@@ -1,14 +1,9 @@
 package com.gkaraffa.cremona.theoretical;
 
-import com.gkaraffa.cremona.common.*;
+public abstract class MelodicSeries extends TheoreticalSeries {
 
-public abstract class MelodicSeries extends TheoreticalSeries{	
-	
-	public MelodicSeries() throws CremonaException{
-		this.allocateToneSpace();
-		if (tones == null){
-			throw (new CremonaException("Allocation incomplete."));
-		}
+	public MelodicSeries(String name, Tonality tonality) {
+		super(name, tonality);
 	}
 
 }

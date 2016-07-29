@@ -1,19 +1,14 @@
 package com.gkaraffa.cremona.common;
 
-public abstract class CremonaObject{
+public abstract class CremonaObject {
 	private String name = null;
-	private boolean defined = false;
 
-	public CremonaObject() {
+	public CremonaObject(String name) {
+		this.name = name;
 	}
 
 	public String toString() {
-		if (this.defined) {
-			return (this.getClass().getName() + ": " + this.name);
-		}
-		else {
-			return ("undefined");
-		}
+		return (this.getClass().getName() + ": " + this.name);
 	}
 
 	public final void setName(String name) {
@@ -21,14 +16,6 @@ public abstract class CremonaObject{
 	}
 
 	public final String getName() {
-		return (name);
-	}
-
-	public final void setDefined(boolean b_set) {
-		defined = b_set;
-	}
-
-	public final boolean getDefined() {
-		return (defined);
+		return name;
 	}
 }

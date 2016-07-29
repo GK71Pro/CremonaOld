@@ -20,4 +20,18 @@ public class StepPattern {
 		list.add(unit);
 	}
 	
+	public StepUnit getStepUnit(int location){
+		return list.get(location);
+	}
+	
+
+	public static StepPattern ionianPattern = new StepPattern(
+			new StepUnit[]{StepUnit.WHOLE_STEP,
+					StepUnit.WHOLE_STEP,
+					StepUnit.HALF_STEP,
+					StepUnit.WHOLE_STEP,
+					StepUnit.WHOLE_STEP,
+					StepUnit.WHOLE_STEP,
+					StepUnit.HALF_STEP}
+			);
 }

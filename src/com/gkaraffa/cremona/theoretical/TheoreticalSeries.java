@@ -1,24 +1,21 @@
 package com.gkaraffa.cremona.theoretical;
 
+import java.util.*;
+
 public abstract class TheoreticalSeries extends TheoreticalObject {
 	private Tonality tonality = null;
-	protected Tone[] tones = null;
+	private List<Tone> tones = new ArrayList<Tone>();
 
-	public TheoreticalSeries() {
-		// TODO Auto-generated constructor stub
+	public TheoreticalSeries(String name, Tonality tonality) {
+		super(name);
+		this.tonality = tonality;
 	}
-	
+
 	public final Tonality getTonality() {
 		return (this.tonality);
 	}
 
-	public final void setTonality(Tonality tonality) {
-		this.tonality = tonality;
-	}
-	
-	public final Tone[] getTones(){
+	public final List<Tone> getTones() {
 		return (this.tones);
 	}
-	
-	protected abstract void allocateToneSpace();
 }
