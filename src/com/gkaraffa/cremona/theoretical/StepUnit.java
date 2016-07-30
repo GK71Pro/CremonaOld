@@ -22,33 +22,7 @@ public enum StepUnit {
 		return text;
 	}
 	
-	public final char abbrev() {
+	public final char getAbbrev() {
 		return abbrev;
-	}
-	
-	public static final StepUnit charToStepUnit(char input) throws IllegalArgumentException{
-		input = Character.toUpperCase(input);
-
-		if (input == 'H'){
-			return StepUnit.HALF_STEP;
-		}
-		else if (input == 'W'){
-			return StepUnit.WHOLE_STEP;
-		}
-		else{
-			throw new IllegalArgumentException();
-		}		
-	}
-	
-	public static final StepUnit intToStepUnit(int input) throws IllegalArgumentException{
-		if (input == 1){
-			return StepUnit.HALF_STEP;
-		}
-		else if (input == 2){
-			return StepUnit.WHOLE_STEP;
-		}
-		else{
-			throw new IllegalArgumentException();
-		}
 	}
 }

@@ -13,6 +13,8 @@ public class Workbench {
 			ScaleFactory scaleFactory = new DiatonicScaleFactory();
 			Scale ionianScale = scaleFactory.createScale(StepPattern.ionianPattern, Tone.C);
 			System.out.println(ionianScale);
+			System.out.println(ionianScale.getTonality());
+			System.out.println(ionianScale.getTone(6));
 		}
 		catch (Exception e) {
 			e.printStackTrace();

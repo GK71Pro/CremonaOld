@@ -12,10 +12,14 @@ public abstract class TheoreticalSeries extends TheoreticalObject {
 	}
 
 	public final Tonality getTonality() {
-		return (this.tonality);
+		return this.tonality;
 	}
 
-	public final List<Tone> getTones() {
-		return (this.tones);
+	public final Tone getTone(int index){
+		return tones.get(index);
 	}
+	
+	public final void addTone(Tone tone){
+		tones.add(tone);
+	}	
 }
