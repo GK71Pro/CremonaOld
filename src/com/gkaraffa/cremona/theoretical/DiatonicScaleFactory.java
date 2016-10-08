@@ -10,44 +10,59 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 	@Override
 	public Scale createScale(StepPattern stepPattern, Tone key) {
+		// measure interval of third
 		Interval thirdInterval = Interval
 				.intToInterval(stepPattern.getStepUnit(0).getSteps()
 						+ stepPattern.getStepUnit(1).getSteps());
 
+		Interval fifthInterval = Interval
+				.intToInterval(stepPattern.getStepUnit(0).getSteps()
+						+ stepPattern.getStepUnit(1).getSteps()
+						+ stepPattern.getStepUnit(2).getSteps()
+						+ stepPattern.getStepUnit(3).getSteps()
+						);
+		
 		Tonality tonality = null;
+		
 		switch (thirdInterval) {
+
 			case MINOR_THIRD:
-				tonality = Tonality.MINOR;
+				if (fifthInterval == Interval.DIMINISHED_FIFTH){
+					tonality = Tonality.DIMINISHED;
+				}
+				else{
+					tonality = Tonality.MINOR;
+				}
 				break;
+
 			case MAJOR_THIRD:
-				tonality = Tonality.MAJOR;
+				if (fifthInterval == Interval.AUGMENTED_FIFTH){
+					tonality = Tonality.AUGMENTED;
+				}
+				else{
+					tonality = Tonality.MAJOR;
+				}
 				break;
+				
 			default:
 				throw new IllegalArgumentException();
 		}
-
-		/*
-		List<Tone> tones = new ArrayList<Tone>();
-		tones.add(key);
-		for (int index = 1; index < stepPattern.size(); index++) {
-			tones.add(
-					TonalSpectrum.traverseDistance(tones.get(index - 1),
-							stepPattern.getStepUnit(index - 1).steps)); 
-		}
-		*/
-		
 		
 		DiatonicScale diatonicScale = new DiatonicScale(stepPattern.getName(),
 				tonality);
-		diatonicScale.addTone(key);
+		LinkedHashSet<Tone> lsh = new LinkedHashSet<Tone>();
+		lsh.add(key);
+		Tone last = key;
 
 		for (int index = 1; index < stepPattern.size(); index++) {
-			diatonicScale.addTone(
-					TonalSpectrum.traverseDistance(diatonicScale.getTone(index - 1),
-							stepPattern.getStepUnit(index - 1).steps)); 
+			Tone cur = TonalSpectrum.traverseDistance(last, 
+					stepPattern.getStepUnit(index - 1).steps);
+			lsh.add(cur);
+			last = cur;
 		}
+		
+		diatonicScale.setTones(lsh);
 
-		// TODO Auto-generated method stub
 		return diatonicScale;
 	}
 

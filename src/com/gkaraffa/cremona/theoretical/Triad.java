@@ -1,9 +1,9 @@
 package com.gkaraffa.cremona.theoretical;
 
-public class Triad extends HarmonicSeries {
+public class Triad extends HarmonicCollection {
 
 	public Triad(String name, Tonality tonality) {
-		super(name, tonality);
+		super(name);
 	}
 
 	// TO-DO copy constructor
