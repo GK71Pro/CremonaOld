@@ -25,7 +25,6 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		Tonality tonality = null;
 		
 		switch (thirdInterval) {
-
 			case MINOR_THIRD:
 				if (fifthInterval == Interval.DIMINISHED_FIFTH){
 					tonality = Tonality.DIMINISHED;
