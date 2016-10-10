@@ -10,6 +10,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 	@Override
 	public Scale createScale(StepPattern stepPattern, Tone key) {
+		/*
 		// measure interval of third
 		Interval thirdInterval = Interval
 				.intToInterval(stepPattern.getStepUnit(0).getSteps()
@@ -49,6 +50,8 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		
 		DiatonicScale diatonicScale = new DiatonicScale(stepPattern.getName(),
 				tonality);
+		*/
+		/*
 		LinkedHashSet<Tone> lsh = new LinkedHashSet<Tone>();
 		lsh.add(key);
 		Tone last = key;
@@ -61,8 +64,77 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		}
 		
 		diatonicScale.setTones(lsh);
+		*/
+		Tonality tonality = evaluateTonality(stepPattern);
+		Tone[] tones = this.createToneArray(stepPattern, key);
+		
+		return new DiatonicScale(stepPattern.getName(), tones, tonality);
+	}
+	
+	
+	protected Tonality evaluateTonality(StepPattern stepPattern){
+		Interval thirdInterval = Interval
+				.intToInterval(stepPattern.getStepUnit(0).getSteps()
+						+ stepPattern.getStepUnit(1).getSteps());
 
-		return diatonicScale;
+		Interval fifthInterval = Interval
+				.intToInterval(stepPattern.getStepUnit(0).getSteps()
+						+ stepPattern.getStepUnit(1).getSteps()
+						+ stepPattern.getStepUnit(2).getSteps()
+						+ stepPattern.getStepUnit(3).getSteps()
+						);
+		
+		Tonality tonality = null;
+		
+		switch (thirdInterval) {
+			case MINOR_THIRD:
+				if (fifthInterval == Interval.DIMINISHED_FIFTH){
+					tonality = Tonality.DIMINISHED;
+				}
+				else{
+					tonality = Tonality.MINOR;
+				}
+				break;
+
+			case MAJOR_THIRD:
+				if (fifthInterval == Interval.AUGMENTED_FIFTH){
+					tonality = Tonality.AUGMENTED;
+				}
+				else{
+					tonality = Tonality.MAJOR;
+				}
+				break;
+				
+			default:
+				throw new IllegalArgumentException();
+		}
+		
+		return tonality;
+	}
+
+	@Override
+	protected Tone[] createToneArray(StepPattern stepPattern, Tone key) {
+		// TODO Auto-generated method stub
+		int toneCount = stepPattern.size();
+		Tone[] tones = new Tone[toneCount];
+		
+		//LinkedHashSet<Tone> lsh = new LinkedHashSet<Tone>();
+		//lsh.add(key);
+		tones[0] = key;
+		//Tone last = key;
+
+		for (int index = 1; index < toneCount; index++) {
+			Tone cur = TonalSpectrum.traverseDistance(tones[index - 1], 
+					stepPattern.getStepUnit(index - 1).steps);
+			
+			tones[index] = cur;
+
+			/*
+			lsh.add(cur);
+			last = cur;
+			*/
+		}
+		return tones;
 	}
 
 }

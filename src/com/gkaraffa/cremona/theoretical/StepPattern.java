@@ -45,6 +45,7 @@ public class StepPattern extends TheoreticalObject {
 		return list.get(location);
 	}
 	
+	
 	public int size(){
 		return list.size();
 	}

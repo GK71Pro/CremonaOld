@@ -7,5 +7,6 @@ public abstract class ScaleFactory {
 	}
 	
 	abstract public Scale createScale(StepPattern stepPattern, Tone key);
+	abstract protected Tone[] createToneArray(StepPattern stepPattern, Tone key);
 
 }
