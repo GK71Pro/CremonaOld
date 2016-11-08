@@ -8,13 +8,49 @@ public class Workbench {
 	}
 
 	public static void main(String[] args) {
-		ScaleFactory sF = new DiatonicScaleFactory();
-		Scale sampleScale = sF.createScale(StepPattern.ionianPattern, Tone.C);
-	
-		sampleScale.getTone(-1);
-		int ceiling = sampleScale.getSize();
-		for (int i = 0; i < ceiling * 2; i++){
-			System.out.println(sampleScale.getTone(i));
+		try {
+			ScaleFactory sF = new DiatonicScaleFactory();
+			Scale sampleScale = sF.createScale(StepPattern.ionianPattern, Tone.C);
+
+			/*
+			sampleScale.getTone(-1);
+			*/
+
+			/*
+			int ceiling = sampleScale.getSize();
+			for (int i = 0; i < ceiling * 2; i++){
+				System.out.println(sampleScale.getTone(i));
+			}
+			*/
+
+			/*
+			Tone[] copy = sampleScale.getToneArrayCopy();
+			for (Tone cur: copy){
+				System.out.println(cur);
+			}
+			*/
+
+			/*
+			System.out.println(sampleScale.getSpellingString());
+			*/
+
+			/*
+			System.out.println(sampleScale.contains(Tone.C));
+			
+			System.out.println(sampleScale.contains(Tone.CSHARP_DFLAT));
+			
+			System.out.println(sampleScale.getPosition(Tone.D));
+			
+			System.out.println(sampleScale.getPosition(Tone.CSHARP_DFLAT));
+			*/
+
+			for (Tone tone : sampleScale) {
+				System.out.println(tone.getText());
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

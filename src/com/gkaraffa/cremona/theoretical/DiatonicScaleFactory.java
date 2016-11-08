@@ -14,7 +14,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		return new DiatonicScale(stepPattern.getName(), tones, tonality);
 	}
 
-	protected Tonality evaluateTonality(StepPattern stepPattern) {
+	private Tonality evaluateTonality(StepPattern stepPattern) {
 		Interval thirdInterval = Interval
 				.intToInterval(stepPattern.getStepUnit(0).getSteps()
 						+ stepPattern.getStepUnit(1).getSteps());

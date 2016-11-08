@@ -1,6 +1,11 @@
 package com.gkaraffa.cremona.theoretical;
 
-public abstract class ToneCollection extends TheoreticalObject {
+import java.util.Iterator;
+
+import com.gkaraffa.cremona.common.CremonaException;
+
+public abstract class ToneCollection extends TheoreticalObject
+		implements Iterable<Tone> {
 	private Tone[] tones = null;
 
 	public ToneCollection(String name, Tone[] tones) {
@@ -8,11 +13,28 @@ public abstract class ToneCollection extends TheoreticalObject {
 		this.tones = tones;
 	}
 
-	/*
-	public Tone[] getTones() {
-		return tones;
+	public boolean contains(Tone target) {
+
+		for (Tone tone : tones) {
+			if (tone.equals(target)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
-	*/
+
+	public String getSpellingString() {
+		StringBuilder sb = new StringBuilder();
+
+		for (Tone tone : tones) {
+			sb.append(tone.getText() + ", ");
+		}
+
+		sb.setLength(sb.length() - 2);
+
+		return sb.toString();
+	}
 
 	public int getSize() {
 		return tones.length;
@@ -24,6 +46,36 @@ public abstract class ToneCollection extends TheoreticalObject {
 		}
 		else {
 			return tones[position];
+		}
+	}
+
+	public int getPosition(Tone target) throws CremonaException {
+		for (int i = 0; i < tones.length; i++) {
+			if (this.tones[i].equals(target)) {
+				return i;
+			}
+		}
+
+		throw new CremonaException("Tone does not exist in this ToneCollection");
+	}
+
+	public Iterator<Tone> iterator() {
+		return new ToneIterator();
+	}
+
+	class ToneIterator implements Iterator<Tone> {
+		private int index = 0;
+
+		public boolean hasNext() {
+			return index < getSize();
+		}
+
+		public Tone next() {
+			return getTone(index++);
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException("not supported yet");
 		}
 	}
 }
