@@ -9,13 +9,12 @@ public class Workbench {
 
 	public static void main(String[] args) {
 		ScaleFactory sF = new DiatonicScaleFactory();
-		Scale cIonian = sF.createScale(StepPattern.ionianPattern, Tone.C);
-		Tone[] tones = cIonian.getTones();
-		
-		for (Tone tone : tones) {
-			System.out.println(tone);
+		Scale sampleScale = sF.createScale(StepPattern.ionianPattern, Tone.C);
+	
+		sampleScale.getTone(-1);
+		int ceiling = sampleScale.getSize();
+		for (int i = 0; i < ceiling * 2; i++){
+			System.out.println(sampleScale.getTone(i));
 		}
-		
-		System.out.println(cIonian.getClass().getName());
 	}
 }

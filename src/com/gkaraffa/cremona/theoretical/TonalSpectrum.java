@@ -1,7 +1,5 @@
 package com.gkaraffa.cremona.theoretical;
 
-import com.gkaraffa.cremona.common.*;
-
 public class TonalSpectrum {
 	public static final int octave = 12;
 	public static final int upperLimit = octave - 1;
@@ -53,13 +51,13 @@ public class TonalSpectrum {
 		return (stopLoc - startLoc);
 	}
 
-	public static Interval measureInterval(Tone startTone, Tone stopTone){
+	public static Interval measureInterval(Tone startTone, Tone stopTone) {
 		int halfSteps = measureDistance(startTone, stopTone);
 
 		return Interval.intToInterval(halfSteps);
 	}
 
-	public static Tone traverseDistance(Tone tonic, int distance){
+	public static Tone traverseDistance(Tone tonic, int distance) {
 
 		int location = locateNote(tonic);
 		location += distance;
@@ -71,7 +69,7 @@ public class TonalSpectrum {
 		return getNote(location);
 	}
 
-	public static Tone traverseInterval(Tone tonic, Interval interval){
+	public static Tone traverseInterval(Tone tonic, Interval interval) {
 		return traverseDistance(tonic, interval.getSteps());
 	}
 
