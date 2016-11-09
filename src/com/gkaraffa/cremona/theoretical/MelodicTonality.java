@@ -1,6 +1,6 @@
 package com.gkaraffa.cremona.theoretical;
 
-public enum Tonality {
+public enum MelodicTonality {
 	MAJOR("Major"), 
 	MINOR("Minor"), 
 	DIMINISHED("Diminished"), 
@@ -8,7 +8,7 @@ public enum Tonality {
 
 	private final String text;
 
-	Tonality(String text) {
+	MelodicTonality(String text) {
 		this.text = text;
 	}
 

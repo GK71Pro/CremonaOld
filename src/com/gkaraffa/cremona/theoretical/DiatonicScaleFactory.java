@@ -8,13 +8,13 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 	@Override
 	public Scale createScale(StepPattern stepPattern, Tone key) {
-		Tonality tonality = evaluateTonality(stepPattern);
+		MelodicTonality tonality = evaluateTonality(stepPattern);
 		Tone[] tones = this.createToneArray(stepPattern, key);
 
 		return new DiatonicScale(stepPattern.getName(), tones, tonality);
 	}
 
-	private Tonality evaluateTonality(StepPattern stepPattern) {
+	private MelodicTonality evaluateTonality(StepPattern stepPattern) {
 		Interval thirdInterval = Interval
 				.intToInterval(stepPattern.getStepUnit(0).getSteps()
 						+ stepPattern.getStepUnit(1).getSteps());
@@ -25,24 +25,24 @@ public class DiatonicScaleFactory extends ScaleFactory {
 						+ stepPattern.getStepUnit(2).getSteps()
 						+ stepPattern.getStepUnit(3).getSteps());
 
-		Tonality tonality = null;
+		MelodicTonality tonality = null;
 
 		switch (thirdInterval) {
 			case MINOR_THIRD:
 				if (fifthInterval == Interval.DIMINISHED_FIFTH) {
-					tonality = Tonality.DIMINISHED;
+					tonality = MelodicTonality.DIMINISHED;
 				}
 				else {
-					tonality = Tonality.MINOR;
+					tonality = MelodicTonality.MINOR;
 				}
 				break;
 
 			case MAJOR_THIRD:
 				if (fifthInterval == Interval.AUGMENTED_FIFTH) {
-					tonality = Tonality.AUGMENTED;
+					tonality = MelodicTonality.AUGMENTED;
 				}
 				else {
-					tonality = Tonality.MAJOR;
+					tonality = MelodicTonality.MAJOR;
 				}
 				break;
 
@@ -94,24 +94,24 @@ Interval fifthInterval = Interval
 				+ stepPattern.getStepUnit(3).getSteps()
 				);
 
-Tonality tonality = null;
+MelodicTonality tonality = null;
 
 switch (thirdInterval) {
 	case MINOR_THIRD:
 		if (fifthInterval == Interval.DIMINISHED_FIFTH){
-			tonality = Tonality.DIMINISHED;
+			tonality = MelodicTonality.DIMINISHED;
 		}
 		else{
-			tonality = Tonality.MINOR;
+			tonality = MelodicTonality.MINOR;
 		}
 		break;
 
 	case MAJOR_THIRD:
 		if (fifthInterval == Interval.AUGMENTED_FIFTH){
-			tonality = Tonality.AUGMENTED;
+			tonality = MelodicTonality.AUGMENTED;
 		}
 		else{
-			tonality = Tonality.MAJOR;
+			tonality = MelodicTonality.MAJOR;
 		}
 		break;
 		
