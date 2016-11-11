@@ -29,7 +29,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 		switch (thirdInterval) {
 			case MINOR_THIRD:
-				if (fifthInterval == Interval.DIMINISHED_FIFTH) {
+				if (fifthInterval == Interval.AUGMENTED_FOURTH_DIMINISHED_FIFTH) {
 					tonality = MelodicTonality.DIMINISHED;
 				}
 				else {
@@ -38,7 +38,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 				break;
 
 			case MAJOR_THIRD:
-				if (fifthInterval == Interval.AUGMENTED_FIFTH) {
+				if (fifthInterval == Interval.AUGMENTED_FIFTH_MINOR_SIXTH) {
 					tonality = MelodicTonality.AUGMENTED;
 				}
 				else {
