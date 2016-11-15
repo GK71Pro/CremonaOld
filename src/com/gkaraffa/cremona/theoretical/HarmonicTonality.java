@@ -5,6 +5,7 @@ public enum HarmonicTonality {
 	MINOR("Minor"), 
 	DIMINISHED("Diminished"), 
 	AUGMENTED("Augmented"),
+	SUSPENDED_FOURTH("Sus 4"),
 	MAJOR_SEVENTH("Major 7th"),
 	MINOR_SEVENTH("Minor 7th"),
 	DOMINANT_SEVENTH("7th"),

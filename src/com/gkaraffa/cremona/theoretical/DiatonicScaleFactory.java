@@ -7,7 +7,12 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	public Scale createScale(StepPattern stepPattern, Tone key) {
+	public Scale createScale(StepPattern stepPattern, Tone key)
+			throws IllegalArgumentException {
+		if (!validateInputPattern(stepPattern)) {
+			throw new IllegalArgumentException("Input pattern is invalid.");
+		}
+
 		MelodicTonality tonality = evaluateTonality(stepPattern);
 		Tone[] tones = this.createToneArray(stepPattern, key);
 
@@ -77,6 +82,38 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		}
 		return tones;
 	}
+
+	@Override
+	protected boolean validateInputPattern(StepPattern stepPattern) {
+		// check that there are 7 StepUnits
+		int stepCount = stepPattern.size();
+		if (stepCount != 7) {
+			return false;
+		}
+
+		// check that there are no steps greater than whole
+		for (int i = 0; i < stepPattern.size(); i++) {
+			if (stepPattern.getStepUnit(i).getSteps() > 2) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static StepPattern ionianPattern = new StepPattern("Ionian",
+			"W,W,H,W,W,W,H");
+	public static StepPattern dorianPattern = new StepPattern("Dorian",
+			"W,H,W,W,W,H,W");
+	public static StepPattern phrygianPattern = new StepPattern("Phrygian",
+			"H,W,W,W,H,W,W");
+	public static StepPattern lydianPattern = new StepPattern("Lydian",
+			"W,W,W,H,W,W,H");
+	public static StepPattern mixolydianPattern = new StepPattern("Mixolydian",
+			"W,W,H,W,W,H,W");
+	public static StepPattern aeolianPattern = new StepPattern("Aeolian",
+			"W,H,W,W,H,W,W");
+	public static StepPattern locrianPattern = new StepPattern("Locrian",
+			"H,W,W,H,W,W,W");
 
 }
 

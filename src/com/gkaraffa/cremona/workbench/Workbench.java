@@ -10,8 +10,9 @@ public class Workbench {
 	public static void main(String[] args) {
 		try {
 			ScaleFactory sF = new DiatonicScaleFactory();
-			Scale sampleScale = sF.createScale(StepPattern.ionianPattern, Tone.C);
-
+			ChordFactory cF = new TriadFactory();
+			Scale sampleScale = sF.createScale(DiatonicScaleFactory.aeolianPattern, Tone.A);
+			Chord sampleChord = cF.createChord(TriadFactory.majorPattern, Tone.E);
 			/*
 			sampleScale.getTone(-1);
 			*/
@@ -45,6 +46,10 @@ public class Workbench {
 			*/
 
 			for (Tone tone : sampleScale) {
+				System.out.println(tone.getText());
+			}
+			
+			for (Tone tone : sampleChord) {
 				System.out.println(tone.getText());
 			}
 		}

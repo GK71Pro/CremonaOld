@@ -3,48 +3,37 @@ package com.gkaraffa.cremona.theoretical;
 import java.util.*;
 
 public class IntervalPattern extends TheoreticalObject{
-	//private List<Interval> list = new ArrayList<Interval>();
-	private static Set<String> allowableStrings = new TreeSet<String>();
-	//private static Set
+	private List<Interval> intervalList = new ArrayList<Interval>();
+	private static HashMap<String, Interval> lookup = new HashMap<String, Interval>();
 	
 	static{
-		for (Interval curr: Interval.values()){
-			allowableStrings.add(curr.getAbbrev());
+		for (Interval currInterval: Interval.values()){
+			lookup.put(currInterval.getAbbrev(), currInterval);
 		}
 	}
 
-	public IntervalPattern(String name, String patternString)
-			throws IllegalArgumentException{
-		super(name);
+	public IntervalPattern(String name, String inPatternString)
+			throws IllegalArgumentException {
+		super(name);		
 		
-
-		//parse patternString
-		String[] patternArray = patternString.split(",");
-		
-		if (validateInputArray(patternArray)){
-		
-			/*
-			for (String current: patternArray){
-				switch (current){
-					case Interval.MAJOR_SECOND.getAbbrev():
-						list.add(Interval.MAJOR_SECOND);
-						break;
-				}
+		String[] intervalArray = inPatternString.split(",");
+		for(String currentIntervalString: intervalArray){
+			Interval currentIntervalUnit = lookup.get(currentIntervalString);
+			if (currentIntervalUnit == null){
+				throw new IllegalArgumentException("Illegal pattern string.");
 			}
-			*/
 			
+			intervalList.add(currentIntervalUnit);
 		}
-		
 	}
 	
-	private boolean validateInputArray(String[] inputArray){
-		for (String current : inputArray) {
-			if (!allowableStrings.contains(current)) {
-				return false;
-			}
-		}
 
-		return true;
+	public Interval getInterval(int location) {
+		return intervalList.get(location);
 	}
-
+	
+	
+	public int size(){
+		return intervalList.size();
+	}
 }

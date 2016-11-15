@@ -1,14 +1,15 @@
 package com.gkaraffa.cremona.theoretical;
 
 public enum StepUnit {
-	HALF_STEP(1, "Half Step", 'H'),
-	WHOLE_STEP(2, "Whole Step", 'W');
+	HALF_STEP(1, "Half Step", "H"),
+	WHOLE_STEP(2, "Whole Step", "W"),
+	HALF_AND_WHOLE_STEP(3, "Half & Whole Step", "HW");
 	
 	public final int steps;
 	public final String text;
-	public final char abbrev;
+	public final String abbrev;
 	
-	StepUnit(int steps, String text, char abbrev){
+	StepUnit(int steps, String text, String abbrev){
 		this.steps = steps;
 		this.text = text;
 		this.abbrev = abbrev;
@@ -22,7 +23,7 @@ public enum StepUnit {
 		return text;
 	}
 	
-	public final char getAbbrev() {
+	public final String getAbbrev() {
 		return abbrev;
 	}
 }

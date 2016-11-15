@@ -6,7 +6,9 @@ public abstract class ScaleFactory {
 		// TODO Auto-generated constructor stub
 	}
 	
-	abstract public Scale createScale(StepPattern stepPattern, Tone key);
+	abstract public Scale createScale(StepPattern stepPattern, Tone key) throws IllegalArgumentException;
 	abstract protected Tone[] createToneArray(StepPattern stepPattern, Tone key);
+	abstract protected boolean validateInputPattern(StepPattern stepPattern);
+
 
 }

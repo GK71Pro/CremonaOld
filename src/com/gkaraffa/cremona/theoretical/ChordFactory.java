@@ -6,7 +6,8 @@ public abstract class ChordFactory {
 		// TODO Auto-generated constructor stub
 	}
 
-	abstract public Scale createChord(StepPattern stepPattern, Tone key);
-	abstract protected Tone[] createToneArray(StepPattern stepPattern, Tone key);
+	abstract public Chord createChord(IntervalPattern intervalPattern, Tone key) throws IllegalArgumentException;
+	abstract protected Tone[] createToneArray(IntervalPattern intervalPattern, Tone key);
+	abstract protected boolean validateInputPattern(IntervalPattern intervalPattern);
 	
 }
