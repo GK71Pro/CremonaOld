@@ -12,7 +12,8 @@ public class Workbench {
 			ScaleFactory sF = new DiatonicScaleFactory();
 			ChordFactory cF = new TriadFactory();
 			Scale sampleScale = sF.createScale(DiatonicScaleFactory.aeolianPattern, Tone.A);
-			Chord sampleChord = cF.createChord(TriadFactory.majorPattern, Tone.E);
+			Chord sampleChord = cF.createChord(TriadFactory.suspendedFourthPattern, Tone.E);
+			System.out.println(sampleChord);
 			/*
 			sampleScale.getTone(-1);
 			*/
@@ -52,6 +53,11 @@ public class Workbench {
 			for (Tone tone : sampleChord) {
 				System.out.println(tone.getText());
 			}
+
+			Harmonizable h = (Harmonizable) sampleScale;
+			System.out.println(h.getThird(5));
+			
+			System.out.println(cF.createChord(h, 1));
 		}
 
 		catch (Exception e) {

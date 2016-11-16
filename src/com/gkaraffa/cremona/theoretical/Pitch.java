@@ -5,8 +5,7 @@ public class Pitch extends TheoreticalObject {
 	private int range;
 	
 	public Pitch(Pitch p) {
-		super(p.getName());
-		this.setName(p.getName());
+		super(p.getText());
 		this.tone = p.getTone();
 		this.range = p.getRange();
 	}

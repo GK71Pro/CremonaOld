@@ -6,7 +6,7 @@ public class Duration extends TheoreticalObject {
 	private Fraction length;
 		
 	public Duration(Duration d){
-		super(d.getName());
+		super(d.getText());
 		this.length = d.getLength();
 	}
 

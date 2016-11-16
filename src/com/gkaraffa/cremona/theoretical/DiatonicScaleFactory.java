@@ -16,7 +16,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		MelodicTonality tonality = evaluateTonality(stepPattern);
 		Tone[] tones = this.createToneArray(stepPattern, key);
 
-		return new DiatonicScale(stepPattern.getName(), tones, tonality);
+		return new DiatonicScale(stepPattern.getText(), tones, tonality);
 	}
 
 	private MelodicTonality evaluateTonality(StepPattern stepPattern) {
