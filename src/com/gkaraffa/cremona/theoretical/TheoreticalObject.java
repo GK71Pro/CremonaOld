@@ -8,17 +8,11 @@ public abstract class TheoreticalObject {
 	}
 
 	public String toString() {
-		return (this.text);
+		return this.text;
 	}
-
-	/*
-	public final void setText(String name) {
-		this.text = name;
-	}
-	*/
 
 	public final String getText() {
-		return text;
+		return this.text;
 	}
 
 }

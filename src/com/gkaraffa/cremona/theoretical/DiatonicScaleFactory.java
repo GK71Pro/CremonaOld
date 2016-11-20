@@ -61,7 +61,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	@Override
 	protected Tone[] createToneArray(StepPattern stepPattern, Tone key) {
 		// TODO Auto-generated method stub
-		int toneCount = stepPattern.size();
+		int toneCount = stepPattern.getSize();
 		Tone[] tones = new Tone[toneCount];
 
 		// LinkedHashSet<Tone> lsh = new LinkedHashSet<Tone>();
@@ -86,20 +86,20 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	@Override
 	protected boolean validateInputPattern(StepPattern stepPattern) {
 		// check that there are 7 StepUnits
-		int stepCount = stepPattern.size();
+		int stepCount = stepPattern.getSize();
 		if (stepCount != 7) {
 			return false;
 		}
 
 		// check that there are no steps greater than whole
-		for (int i = 0; i < stepPattern.size(); i++) {
+		for (int i = 0; i < stepPattern.getSize(); i++) {
 			if (stepPattern.getStepUnit(i).getSteps() > 2) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	public static StepPattern ionianPattern = new StepPattern("Ionian",
 			"W,W,H,W,W,W,H");
 	public static StepPattern dorianPattern = new StepPattern("Dorian",

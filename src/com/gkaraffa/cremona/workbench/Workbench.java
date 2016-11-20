@@ -9,55 +9,17 @@ public class Workbench {
 
 	public static void main(String[] args) {
 		try {
-			ScaleFactory sF = new DiatonicScaleFactory();
 			ChordFactory cF = new TriadFactory();
-			Scale sampleScale = sF.createScale(DiatonicScaleFactory.aeolianPattern, Tone.A);
-			Chord sampleChord = cF.createChord(TriadFactory.suspendedFourthPattern, Tone.E);
-			System.out.println(sampleChord);
-			/*
-			sampleScale.getTone(-1);
-			*/
+			Chord c = cF.createChord(TriadFactory.suspendedFourthPattern, Tone.C);
+			System.out.println(c);
 
-			/*
-			int ceiling = sampleScale.getSize();
-			for (int i = 0; i < ceiling * 2; i++){
-				System.out.println(sampleScale.getTone(i));
-			}
-			*/
-
-			/*
-			Tone[] copy = sampleScale.getToneArrayCopy();
-			for (Tone cur: copy){
-				System.out.println(cur);
-			}
-			*/
-
-			/*
-			System.out.println(sampleScale.getSpellingString());
-			*/
-
-			/*
-			System.out.println(sampleScale.contains(Tone.C));
-			
-			System.out.println(sampleScale.contains(Tone.CSHARP_DFLAT));
-			
-			System.out.println(sampleScale.getPosition(Tone.D));
-			
-			System.out.println(sampleScale.getPosition(Tone.CSHARP_DFLAT));
-			*/
-
-			for (Tone tone : sampleScale) {
-				System.out.println(tone.getText());
-			}
-			
-			for (Tone tone : sampleChord) {
-				System.out.println(tone.getText());
+			for (Tone t : c) {
+				System.out.println(t);
 			}
 
-			Harmonizable h = (Harmonizable) sampleScale;
-			System.out.println(h.getThird(5));
-			
-			System.out.println(cF.createChord(h, 1));
+			for (Integer i : c.getDegreeSet()) {
+				System.out.println(i);
+			}
 		}
 
 		catch (Exception e) {
