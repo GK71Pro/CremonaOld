@@ -53,7 +53,7 @@ public class TriadFactory extends ChordFactory {
 				tones, harmonicProfile.harmonicTonality, harmonicProfile.degreeSet);
 	}
 
-	private HarmonicTonality evaluateTonality(Tone[] toneArray) {
+/*	private HarmonicTonality evaluateTonality(Tone[] toneArray) {
 		Interval[] intervalArray = new Interval[2];
 		intervalArray[0] = TonalSpectrum.measureInterval(toneArray[0],
 				toneArray[1]);
@@ -89,7 +89,7 @@ public class TriadFactory extends ChordFactory {
 				}
 
 		throw new IllegalArgumentException("Not valid triad intervals.");
-	}
+	}*/
 
 	private HarmonicProfile evaluateProfile(Tone[] toneArray) {
 		HarmonicProfile harmonicProfile = new HarmonicProfile();

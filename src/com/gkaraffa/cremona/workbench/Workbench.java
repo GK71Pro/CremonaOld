@@ -13,12 +13,8 @@ public class Workbench {
 			Chord c = cF.createChord(TriadFactory.suspendedFourthPattern, Tone.C);
 			System.out.println(c);
 
-			for (Tone t : c) {
-				System.out.println(t);
-			}
-
-			for (Integer i : c.getDegreeSet()) {
-				System.out.println(i);
+			for (int i = 1; i <= 7; i++){
+				System.out.println(i + ": " + c.getToneByDegree(i));
 			}
 		}
 
