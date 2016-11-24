@@ -1,6 +1,8 @@
-package com.gkaraffa.cremona.theoretical;
+package com.gkaraffa.cremona.theoretical.harmony;
 
 import java.util.HashSet;
+
+import com.gkaraffa.cremona.theoretical.Tone;
 
 public abstract class Chord extends HarmonicCollection {
 	private HarmonicTonality tonality;
