@@ -1,8 +1,6 @@
-package com.gkaraffa.cremona.theoretical.harmony;
+package com.gkaraffa.cremona.theoretical;
 
 import java.util.*;
-
-import com.gkaraffa.cremona.theoretical.TheoreticalObject;
 
 public class IntervalPattern extends TheoreticalObject
 		implements Iterable<Interval> {

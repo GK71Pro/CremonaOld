@@ -1,7 +1,5 @@
 package com.gkaraffa.cremona.theoretical;
 
-import com.gkaraffa.cremona.theoretical.harmony.Interval;
-
 public class TonalSpectrum {
 	public static final int octave = 12;
 	public static final int upperLimit = octave - 1;

@@ -1,6 +1,7 @@
 package com.gkaraffa.cremona.theoretical.harmony;
 
 import com.gkaraffa.cremona.theoretical.Harmonizable;
+import com.gkaraffa.cremona.theoretical.IntervalPattern;
 import com.gkaraffa.cremona.theoretical.Tone;
 
 public abstract class ChordFactory {

@@ -1,7 +1,5 @@
 package com.gkaraffa.cremona.theoretical;
 
-import com.gkaraffa.cremona.theoretical.harmony.Interval;
-
 public class DiatonicScaleFactory extends ScaleFactory {
 
 	public DiatonicScaleFactory() {
