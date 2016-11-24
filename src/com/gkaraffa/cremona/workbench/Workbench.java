@@ -1,9 +1,9 @@
 package com.gkaraffa.cremona.workbench;
 
 import com.gkaraffa.cremona.theoretical.*;
-import com.gkaraffa.cremona.theoretical.harmony.Chord;
-import com.gkaraffa.cremona.theoretical.harmony.ChordFactory;
-import com.gkaraffa.cremona.theoretical.harmony.TriadFactory;
+import com.gkaraffa.cremona.theoretical.harmonic.Chord;
+import com.gkaraffa.cremona.theoretical.harmonic.ChordFactory;
+import com.gkaraffa.cremona.theoretical.harmonic.TriadFactory;
 
 public class Workbench {
 

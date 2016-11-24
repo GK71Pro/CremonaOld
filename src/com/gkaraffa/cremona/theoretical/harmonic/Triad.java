@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.theoretical.harmony;
+package com.gkaraffa.cremona.theoretical.harmonic;
 
 import java.util.HashSet;
 
