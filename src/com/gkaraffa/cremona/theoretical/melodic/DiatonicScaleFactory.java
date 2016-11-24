@@ -1,4 +1,9 @@
-package com.gkaraffa.cremona.theoretical;
+package com.gkaraffa.cremona.theoretical.melodic;
+
+import com.gkaraffa.cremona.theoretical.Interval;
+import com.gkaraffa.cremona.theoretical.StepPattern;
+import com.gkaraffa.cremona.theoretical.TonalSpectrum;
+import com.gkaraffa.cremona.theoretical.Tone;
 
 public class DiatonicScaleFactory extends ScaleFactory {
 

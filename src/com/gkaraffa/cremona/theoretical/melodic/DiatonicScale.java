@@ -1,4 +1,6 @@
-package com.gkaraffa.cremona.theoretical;
+package com.gkaraffa.cremona.theoretical.melodic;
+
+import com.gkaraffa.cremona.theoretical.Tone;
 
 public class DiatonicScale extends Scale implements Harmonizable {
 
