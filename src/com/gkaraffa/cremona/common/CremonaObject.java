@@ -3,21 +3,15 @@ package com.gkaraffa.cremona.common;
 public abstract class CremonaObject {
 	private String text = null;
 
-	public CremonaObject(String name) {
-		this.text = name;
+	public CremonaObject(String text) {
+		this.text = text;
 	}
 
 	public String toString() {
-		return (this.getClass().getName() + ": " + this.text);
+		return this.text;
 	}
-
-	/*
-	public final void setText(String name) {
-		this.text = name;
-	}
-	*/
 
 	public final String getText() {
-		return text;
+		return this.text;
 	}
 }
