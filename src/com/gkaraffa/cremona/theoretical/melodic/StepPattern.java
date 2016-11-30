@@ -28,14 +28,6 @@ public class StepPattern extends TheoreticalObject
 
 			stepList.add(currentUnit);
 		}
-		
-		//split by comma
-		//loop elements
-			//split element by single-length strings
-			//loop single-length strings
-				//validation
-				//accrue distance
-			
 	}
 
 	public StepUnit getStepUnit(int location) {
@@ -45,11 +37,11 @@ public class StepPattern extends TheoreticalObject
 	public int getSize() {
 		return stepList.size();
 	}
-	
+
 	public Iterator<StepUnit> iterator() {
 		return new StepUnitIterator();
 	}
-	
+
 	class StepUnitIterator implements Iterator<StepUnit> {
 		private int index = 0;
 
@@ -64,7 +56,7 @@ public class StepPattern extends TheoreticalObject
 		public void remove() {
 			throw new UnsupportedOperationException("not supported yet");
 		}
-	}	
+	}
 
 	public static StepPattern harmonicMinorPattern = new StepPattern(
 			"Harmonic Minor", "W,H,W,W,H,HW,H");

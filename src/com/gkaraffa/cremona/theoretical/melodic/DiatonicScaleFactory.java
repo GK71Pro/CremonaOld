@@ -1,13 +1,11 @@
 package com.gkaraffa.cremona.theoretical.melodic;
 
-import com.gkaraffa.cremona.theoretical.Interval;
-import com.gkaraffa.cremona.theoretical.TonalSpectrum;
-import com.gkaraffa.cremona.theoretical.Tone;
+import com.gkaraffa.cremona.theoretical.*;
+import com.gkaraffa.cremona.theoretical.harmonic.Interval;
 
 public class DiatonicScaleFactory extends ScaleFactory {
 
 	public DiatonicScaleFactory() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -20,19 +18,19 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		MelodicTonality tonality = evaluateTonality(stepPattern);
 		Tone[] tones = this.createToneArray(stepPattern, key);
 
-		return new DiatonicScale(stepPattern.getText(), tones, tonality);
+		return new DiatonicScale(key.getText() + " " + stepPattern.getText(), tones, tonality);
 	}
 
 	private MelodicTonality evaluateTonality(StepPattern stepPattern) {
 		Interval thirdInterval = Interval
-				.intToInterval(stepPattern.getStepUnit(0).getDistance().getHalfSteps()
-						+ stepPattern.getStepUnit(1).getDistance().getHalfSteps());
+				.intToInterval(stepPattern.getStepUnit(0).getDistance()
+						+ stepPattern.getStepUnit(1).getDistance());
 
 		Interval fifthInterval = Interval
-				.intToInterval(stepPattern.getStepUnit(0).getDistance().getHalfSteps()
-						+ stepPattern.getStepUnit(1).getDistance().getHalfSteps()
-						+ stepPattern.getStepUnit(2).getDistance().getHalfSteps()
-						+ stepPattern.getStepUnit(3).getDistance().getHalfSteps());
+				.intToInterval(stepPattern.getStepUnit(0).getDistance()
+						+ stepPattern.getStepUnit(1).getDistance()
+						+ stepPattern.getStepUnit(2).getDistance()
+						+ stepPattern.getStepUnit(3).getDistance());
 
 		MelodicTonality tonality = null;
 
@@ -64,43 +62,34 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 	@Override
 	protected Tone[] createToneArray(StepPattern stepPattern, Tone key) {
-		// TODO Auto-generated method stub
 		int toneCount = stepPattern.getSize();
 		Tone[] tones = new Tone[toneCount];
 
-		// LinkedHashSet<Tone> lsh = new LinkedHashSet<Tone>();
-		// lsh.add(key);
 		tones[0] = key;
-		// Tone last = key;
-
+		
 		for (int index = 1; index < toneCount; index++) {
 			Tone cur = TonalSpectrum.traverseDistance(tones[index - 1],
-					stepPattern.getStepUnit(index - 1).getDistance().getHalfSteps());
-
+					stepPattern.getStepUnit(index - 1).getDistance());
 			tones[index] = cur;
-
-			/*
-			lsh.add(cur);
-			last = cur;
-			*/
 		}
+		
 		return tones;
 	}
 
 	@Override
 	protected boolean validateInputPattern(StepPattern stepPattern) {
-		// check that there are 7 StepUnits
 		int stepCount = stepPattern.getSize();
+		
 		if (stepCount != 7) {
 			return false;
 		}
 
-		// check that there are no steps greater than whole
 		for (int i = 0; i < stepPattern.getSize(); i++) {
-			if (stepPattern.getStepUnit(i).getDistance().getHalfSteps() > 2) {
+			if (stepPattern.getStepUnit(i).getDistance() > 2) {
 				return false;
 			}
 		}
+		
 		return true;
 	}
 
@@ -120,61 +109,3 @@ public class DiatonicScaleFactory extends ScaleFactory {
 			"H,W,W,H,W,W,W");
 
 }
-
-/*
-public Scale createScale(StepPattern stepPattern, Tone key){
-// measure interval of third
-Interval thirdInterval = Interval
-		.intToInterval(stepPattern.getStepUnit(0).getSteps()
-				+ stepPattern.getStepUnit(1).getSteps());
-
-Interval fifthInterval = Interval
-		.intToInterval(stepPattern.getStepUnit(0).getSteps()
-				+ stepPattern.getStepUnit(1).getSteps()
-				+ stepPattern.getStepUnit(2).getSteps()
-				+ stepPattern.getStepUnit(3).getSteps()
-				);
-
-MelodicTonality tonality = null;
-
-switch (thirdInterval) {
-	case MINOR_THIRD:
-		if (fifthInterval == Interval.DIMINISHED_FIFTH){
-			tonality = MelodicTonality.DIMINISHED;
-		}
-		else{
-			tonality = MelodicTonality.MINOR;
-		}
-		break;
-
-	case MAJOR_THIRD:
-		if (fifthInterval == Interval.AUGMENTED_FIFTH){
-			tonality = MelodicTonality.AUGMENTED;
-		}
-		else{
-			tonality = MelodicTonality.MAJOR;
-		}
-		break;
-		
-	default:
-		throw new IllegalArgumentException();
-}
-
-DiatonicScale diatonicScale = new DiatonicScale(stepPattern.getName(),
-		tonality);
-*/
-/*
-LinkedHashSet<Tone> lsh = new LinkedHashSet<Tone>();
-lsh.add(key);
-Tone last = key;
-
-for (int index = 1; index < stepPattern.size(); index++) {
-	Tone cur = TonalSpectrum.traverseDistance(last, 
-			stepPattern.getStepUnit(index - 1).steps);
-	lsh.add(cur);
-	last = cur;
-}
-
-diatonicScale.setTones(lsh);
-}
-*/

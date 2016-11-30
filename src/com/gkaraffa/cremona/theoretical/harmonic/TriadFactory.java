@@ -3,8 +3,6 @@ package com.gkaraffa.cremona.theoretical.harmonic;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-import com.gkaraffa.cremona.theoretical.Interval;
-import com.gkaraffa.cremona.theoretical.IntervalPattern;
 import com.gkaraffa.cremona.theoretical.TonalSpectrum;
 import com.gkaraffa.cremona.theoretical.Tone;
 import com.gkaraffa.cremona.theoretical.melodic.Harmonizable;
@@ -18,19 +16,13 @@ public class TriadFactory extends ChordFactory {
 	public Chord createChord(IntervalPattern intervalPattern, Tone tonic)
 			throws IllegalArgumentException {
 
-		if (!validateInputPattern(intervalPattern)) {
+		if (!validateIntervalPattern(intervalPattern)) {
 			throw new IllegalArgumentException("Not valid number of intervals.");
 		}
 
 		Tone[] tones = intervalPatternAndTonicToToneArray(intervalPattern, tonic);
-		/*
-		HarmonicTonality hTonality = evaluateTonality(tones);
-		
-		return new Triad(tones[0].getText() + " " + hTonality.getText(), tones,
-				hTonality);
-				*/
-
 		HarmonicProfile harmonicProfile = evaluateProfile(tones);
+
 		return new Triad(
 				tones[0].getText() + " "
 						+ harmonicProfile.harmonicTonality.getText(),
@@ -44,58 +36,13 @@ public class TriadFactory extends ChordFactory {
 
 		Tone[] tones = harmonizableScaleAndDegreeToToneArray(harmonizableScale,
 				scaleDegree);
-
-		/*
-		HarmonicTonality hTonality = evaluateTonality(tones);
-		
-		return new Triad(tones[0].getText() + " " + hTonality.getText(), tones,
-				hTonality);
-				*/
-
 		HarmonicProfile harmonicProfile = evaluateProfile(tones);
+
 		return new Triad(
 				tones[0].getText() + " "
 						+ harmonicProfile.harmonicTonality.getText(),
 				tones, harmonicProfile.harmonicTonality, harmonicProfile.degreeSet);
 	}
-
-/*	private HarmonicTonality evaluateTonality(Tone[] toneArray) {
-		Interval[] intervalArray = new Interval[2];
-		intervalArray[0] = TonalSpectrum.measureInterval(toneArray[0],
-				toneArray[1]);
-		intervalArray[1] = TonalSpectrum.measureInterval(toneArray[0],
-				toneArray[2]);
-
-		if (intervalArray[0] == Interval.MAJOR_THIRD) {
-			// perfect fifth and augmented fifth are valid
-			if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-				return HarmonicTonality.MAJOR;
-			}
-			else
-				if (intervalArray[1] == Interval.AUGMENTED_FIFTH_MINOR_SIXTH) {
-					return HarmonicTonality.AUGMENTED;
-				}
-		}
-		else
-			if (intervalArray[0] == Interval.MINOR_THIRD) {
-				// perfect fifth and diminished fifth are valid
-				if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-					return HarmonicTonality.MINOR;
-				}
-				else
-					if (intervalArray[1] == Interval.AUGMENTED_FOURTH_DIMINISHED_FIFTH) {
-						return HarmonicTonality.DIMINISHED;
-					}
-			}
-			else
-				if (intervalArray[0] == Interval.PERFECT_FOURTH) {
-					if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-						return HarmonicTonality.SUSPENDED_FOURTH;
-					}
-				}
-
-		throw new IllegalArgumentException("Not valid triad intervals.");
-	}*/
 
 	private HarmonicProfile evaluateProfile(Tone[] toneArray) {
 		HarmonicProfile harmonicProfile = new HarmonicProfile();
@@ -103,14 +50,13 @@ public class TriadFactory extends ChordFactory {
 
 		Interval[] intervalArray = new Interval[2];
 
-		intervalArray[0] = TonalSpectrum.measureInterval(toneArray[0],
-				toneArray[1]);
-		intervalArray[1] = TonalSpectrum.measureInterval(toneArray[0],
-				toneArray[2]);
+		intervalArray[0] = Interval.intToInterval(
+				TonalSpectrum.measureDistance(toneArray[0], toneArray[1]));
+		intervalArray[1] = Interval.intToInterval(
+				TonalSpectrum.measureDistance(toneArray[0], toneArray[2]));
 
 		if (intervalArray[0] == Interval.MAJOR_THIRD) {
 			degreeSet.add(3);
-			// perfect fifth and augmented fifth are valid
 			if (intervalArray[1] == Interval.PERFECT_FIFTH) {
 				degreeSet.add(5);
 				harmonicProfile.harmonicTonality = HarmonicTonality.MAJOR;
@@ -165,7 +111,7 @@ public class TriadFactory extends ChordFactory {
 
 		for (int index = 1; index < toneCount; index++) {
 			Tone cur = TonalSpectrum.traverseDistance(tones[0],
-					intervalPattern.getInterval(index - 1).getSteps());
+					intervalPattern.getInterval(index - 1).getDistance());
 
 			tones[index] = cur;
 		}
@@ -184,7 +130,7 @@ public class TriadFactory extends ChordFactory {
 		return toneArray;
 	}
 
-	private boolean validateInputPattern(IntervalPattern intervalPattern) {
+	private boolean validateIntervalPattern(IntervalPattern intervalPattern) {
 		int intervalCount = intervalPattern.getSize();
 
 		if (intervalCount != 2) {

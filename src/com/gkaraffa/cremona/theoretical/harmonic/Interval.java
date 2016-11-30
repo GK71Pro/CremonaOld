@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.theoretical;
+package com.gkaraffa.cremona.theoretical.harmonic;
 
 import java.util.HashMap;
 
@@ -17,25 +17,25 @@ public enum Interval {
 	MAJOR_SEVENTH(11, "Major Seventh", "7"),
 	OCTAVE(12, "Octave", "O");
 	
-	public final int steps;
-	public final String text;
-	public final String abbrev;
+	private final int distance;
+	private final String text;
+	private final String abbrev;
 	private final static HashMap<Integer, Interval> hashMap = new HashMap<Integer, Interval>();
 	
 	static{
 		for (Interval interval: Interval.values()){
-			hashMap.put(interval.steps, interval);
+			hashMap.put(interval.distance, interval);
 		}
 	}
 	
-	Interval(int steps, String text, String abbrev){
-		this.steps = steps;
+	Interval(int distance, String text, String abbrev){
+		this.distance = distance;
 		this.text = text;
 		this.abbrev = abbrev;
 	}
 
-	public final int getSteps() {
-		return steps;
+	public final int getDistance() {
+		return distance;
 	}
 
 	public final String getText() {

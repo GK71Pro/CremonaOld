@@ -1,6 +1,5 @@
 package com.gkaraffa.cremona.theoretical.harmonic;
 
-import com.gkaraffa.cremona.theoretical.IntervalPattern;
 import com.gkaraffa.cremona.theoretical.Tone;
 import com.gkaraffa.cremona.theoretical.melodic.Harmonizable;
 
