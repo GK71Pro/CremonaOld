@@ -1,7 +1,6 @@
 package com.gkaraffa.cremona.theoretical.melodic;
 
 import com.gkaraffa.cremona.theoretical.Interval;
-import com.gkaraffa.cremona.theoretical.StepPattern;
 import com.gkaraffa.cremona.theoretical.TonalSpectrum;
 import com.gkaraffa.cremona.theoretical.Tone;
 
@@ -26,14 +25,14 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 	private MelodicTonality evaluateTonality(StepPattern stepPattern) {
 		Interval thirdInterval = Interval
-				.intToInterval(stepPattern.getStepUnit(0).getSteps()
-						+ stepPattern.getStepUnit(1).getSteps());
+				.intToInterval(stepPattern.getStepUnit(0).getDistance().getHalfSteps()
+						+ stepPattern.getStepUnit(1).getDistance().getHalfSteps());
 
 		Interval fifthInterval = Interval
-				.intToInterval(stepPattern.getStepUnit(0).getSteps()
-						+ stepPattern.getStepUnit(1).getSteps()
-						+ stepPattern.getStepUnit(2).getSteps()
-						+ stepPattern.getStepUnit(3).getSteps());
+				.intToInterval(stepPattern.getStepUnit(0).getDistance().getHalfSteps()
+						+ stepPattern.getStepUnit(1).getDistance().getHalfSteps()
+						+ stepPattern.getStepUnit(2).getDistance().getHalfSteps()
+						+ stepPattern.getStepUnit(3).getDistance().getHalfSteps());
 
 		MelodicTonality tonality = null;
 
@@ -76,7 +75,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 		for (int index = 1; index < toneCount; index++) {
 			Tone cur = TonalSpectrum.traverseDistance(tones[index - 1],
-					stepPattern.getStepUnit(index - 1).steps);
+					stepPattern.getStepUnit(index - 1).getDistance().getHalfSteps());
 
 			tones[index] = cur;
 
@@ -98,7 +97,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 		// check that there are no steps greater than whole
 		for (int i = 0; i < stepPattern.getSize(); i++) {
-			if (stepPattern.getStepUnit(i).getSteps() > 2) {
+			if (stepPattern.getStepUnit(i).getDistance().getHalfSteps() > 2) {
 				return false;
 			}
 		}

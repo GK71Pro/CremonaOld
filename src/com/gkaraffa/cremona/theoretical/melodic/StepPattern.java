@@ -1,6 +1,8 @@
-package com.gkaraffa.cremona.theoretical;
+package com.gkaraffa.cremona.theoretical.melodic;
 
 import java.util.*;
+
+import com.gkaraffa.cremona.theoretical.TheoreticalObject;
 
 public class StepPattern extends TheoreticalObject
 		implements Iterable<StepUnit> {
@@ -9,7 +11,7 @@ public class StepPattern extends TheoreticalObject
 
 	static {
 		for (StepUnit currUnit : StepUnit.values()) {
-			lookup.put(currUnit.abbrev, currUnit);
+			lookup.put(currUnit.getAbbrev(), currUnit);
 		}
 	}
 
@@ -26,6 +28,14 @@ public class StepPattern extends TheoreticalObject
 
 			stepList.add(currentUnit);
 		}
+		
+		//split by comma
+		//loop elements
+			//split element by single-length strings
+			//loop single-length strings
+				//validation
+				//accrue distance
+			
 	}
 
 	public StepUnit getStepUnit(int location) {
@@ -54,8 +64,7 @@ public class StepPattern extends TheoreticalObject
 		public void remove() {
 			throw new UnsupportedOperationException("not supported yet");
 		}
-	}
-	
+	}	
 
 	public static StepPattern harmonicMinorPattern = new StepPattern(
 			"Harmonic Minor", "W,H,W,W,H,HW,H");

@@ -1,9 +1,7 @@
 package com.gkaraffa.cremona.workbench;
 
 import com.gkaraffa.cremona.theoretical.*;
-import com.gkaraffa.cremona.theoretical.harmonic.Chord;
-import com.gkaraffa.cremona.theoretical.harmonic.ChordFactory;
-import com.gkaraffa.cremona.theoretical.harmonic.TriadFactory;
+import com.gkaraffa.cremona.theoretical.melodic.*;
 
 public class Workbench {
 
@@ -12,15 +10,13 @@ public class Workbench {
 
 	public static void main(String[] args) {
 		try {
-			ChordFactory cF = new TriadFactory();
-			Chord c = cF.createChord(TriadFactory.suspendedFourthPattern, Tone.C);
-			System.out.println(c);
-
-			for (int i = 1; i <= 7; i++){
-				System.out.println(i + ": " + c.getToneByDegree(i));
+			ScaleFactory sF = new DiatonicScaleFactory();
+			Scale s = sF.createScale(DiatonicScaleFactory.ionianPattern, Tone.C);
+			
+			for(Tone t: s){
+				System.out.println(t);
 			}
 		}
-
 		catch (Exception e) {
 			e.printStackTrace();
 		}
