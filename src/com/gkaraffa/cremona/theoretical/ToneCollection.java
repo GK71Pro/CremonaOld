@@ -1,7 +1,5 @@
 package com.gkaraffa.cremona.theoretical;
 
-import java.util.Iterator;
-
 import com.gkaraffa.cremona.common.CremonaException;
 
 public abstract class ToneCollection extends TheoreticalObject
@@ -14,7 +12,6 @@ public abstract class ToneCollection extends TheoreticalObject
 	}
 
 	public boolean contains(Tone target) {
-
 		for (Tone tone : tones) {
 			if (tone.equals(target)) {
 				return true;
@@ -59,23 +56,4 @@ public abstract class ToneCollection extends TheoreticalObject
 		throw new CremonaException("Tone does not exist in this ToneCollection");
 	}
 
-	public Iterator<Tone> iterator() {
-		return new ToneIterator();
-	}
-
-	class ToneIterator implements Iterator<Tone> {
-		private int index = 0;
-
-		public boolean hasNext() {
-			return index < getSize();
-		}
-
-		public Tone next() {
-			return getTone(index++);
-		}
-
-		public void remove() {
-			throw new UnsupportedOperationException("not supported yet");
-		}
-	}
 }

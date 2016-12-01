@@ -1,6 +1,7 @@
 package com.gkaraffa.cremona.playable;
 
-import com.gkaraffa.cremona.theoretical.*;
+import com.gkaraffa.cremona.common.Duration;
+import com.gkaraffa.cremona.common.Pitch;
 
 public class Note extends PlayableObject {
 	private Pitch pitch;

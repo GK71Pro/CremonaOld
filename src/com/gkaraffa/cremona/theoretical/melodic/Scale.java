@@ -1,8 +1,8 @@
 package com.gkaraffa.cremona.theoretical.melodic;
 
-import com.gkaraffa.cremona.theoretical.Tone;
+import com.gkaraffa.cremona.theoretical.*;
 
-public abstract class Scale extends MelodicCollection {
+public abstract class Scale extends ToneCollection {
 	private MelodicTonality tonality;
 	private Tone key;
 
@@ -11,12 +11,12 @@ public abstract class Scale extends MelodicCollection {
 		this.tonality = tonality;
 		this.key = tones[0];
 	}
-	
-	public MelodicTonality getTonality(){
+
+	public MelodicTonality getTonality() {
 		return tonality;
 	}
-	
-	public Tone getKey(){
+
+	public Tone getKey() {
 		return this.key;
 	}
 }
