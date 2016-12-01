@@ -21,12 +21,15 @@ public class Workbench {
 			
 			System.out.println();
 			
-			ChordFactory cF = new TriadFactory();
-			Chord c = cF.createChord((Harmonizable)s, 1);
-			System.out.println(c);
+			if (s instanceof Harmonizable){
+				Harmonizable h = (Harmonizable) s;
+				ChordFactory cF = new TriadFactory();
+				Chord c = cF.createChord(h, 1);
+				System.out.println(c);
 			
-			for(Tone t: c){
-				System.out.println(t);
+				for(Tone t: c){
+					System.out.println(t);
+				}
 			}
 		}
 		catch (Exception e) {

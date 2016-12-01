@@ -1,7 +1,6 @@
 package com.gkaraffa.cremona.theoretical.melodic;
 
 import com.gkaraffa.cremona.theoretical.*;
-import com.gkaraffa.cremona.theoretical.harmonic.Interval;
 
 public class DiatonicScaleFactory extends ScaleFactory {
 
@@ -9,30 +8,24 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	public Scale createScale(StepPattern stepPattern, Tone key)
+	public Scale createScale(IntervalPattern intervalPattern, Tone key)
 			throws IllegalArgumentException {
-		if (!validateInputPattern(stepPattern)) {
+		if (!validateInputPattern(intervalPattern)) {
 			throw new IllegalArgumentException("Input pattern is invalid.");
 		}
 
-		MelodicTonality tonality = evaluateTonality(stepPattern);
-		Tone[] tones = this.createToneArray(stepPattern, key);
+		MelodicTonality tonality = evaluateTonality(intervalPattern);
+		Tone[] tones = this.createToneArray(intervalPattern, key);
 
-		return new DiatonicScale(key.getText() + " " + stepPattern.getText(), tones, tonality);
+		return new DiatonicScale(key.getText() + " " + intervalPattern.getText(), tones, tonality);
 	}
 
-	private MelodicTonality evaluateTonality(StepPattern stepPattern) {
-		Interval thirdInterval = Interval
-				.intToInterval(stepPattern.getStepUnit(0).getDistance()
-						+ stepPattern.getStepUnit(1).getDistance());
-
-		Interval fifthInterval = Interval
-				.intToInterval(stepPattern.getStepUnit(0).getDistance()
-						+ stepPattern.getStepUnit(1).getDistance()
-						+ stepPattern.getStepUnit(2).getDistance()
-						+ stepPattern.getStepUnit(3).getDistance());
-
+	private MelodicTonality evaluateTonality(IntervalPattern intervalPattern) {
+		Interval thirdInterval = intervalPattern.getInterval(1);
+		Interval fifthInterval = intervalPattern.getInterval(3);
 		MelodicTonality tonality = null;
+		
+		System.out.println(thirdInterval);
 
 		switch (thirdInterval) {
 			case MINOR_THIRD:
@@ -60,41 +53,40 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		return tonality;
 	}
 
-	@Override
-	protected Tone[] createToneArray(StepPattern stepPattern, Tone key) {
-		int toneCount = stepPattern.getSize();
+	private Tone[] createToneArray(IntervalPattern intervalPattern, Tone key) {
+		int toneCount = intervalPattern.getSize() + 1;
 		Tone[] tones = new Tone[toneCount];
 
 		tones[0] = key;
 		
 		for (int index = 1; index < toneCount; index++) {
-			Tone cur = TonalSpectrum.traverseDistance(tones[index - 1],
-					stepPattern.getStepUnit(index - 1).getDistance());
+			Tone cur = TonalSpectrum.traverseDistance(tones[0],
+					intervalPattern.getInterval(index - 1).getDistance());
 			tones[index] = cur;
 		}
 		
 		return tones;
 	}
+	
 
-	@Override
-	protected boolean validateInputPattern(StepPattern stepPattern) {
-		int stepCount = stepPattern.getSize();
+	private boolean validateInputPattern(IntervalPattern intervalPattern) {
+		int stepCount = intervalPattern.getSize();
 		
-		if (stepCount != 7) {
+		if (stepCount != 6) {
 			return false;
 		}
 
-		for (int i = 0; i < stepPattern.getSize(); i++) {
-			if (stepPattern.getStepUnit(i).getDistance() > 2) {
-				return false;
-			}
-		}
-		
 		return true;
 	}
 
-	public static StepPattern ionianPattern = new StepPattern("Ionian",
-			"W,W,H,W,W,W,H");
+	public static IntervalPattern ionianPattern = new IntervalPattern("Ionian", "2,3,4,5,6/D7,7");
+	public static IntervalPattern dorianPattern;
+	public static IntervalPattern lydianPattern;
+	public static IntervalPattern mixolydianPattern;
+	public static IntervalPattern aeolianPattern = new IntervalPattern("Aeolian", "2,M3,4,5,6/D7,M7");
+	
+	/*
+//	public static StepPattern ionianPattern = new StepPattern("Ionian", "W,W,H,W,W,W,H");
 	public static StepPattern dorianPattern = new StepPattern("Dorian",
 			"W,H,W,W,W,H,W");
 	public static StepPattern phrygianPattern = new StepPattern("Phrygian",
@@ -107,5 +99,6 @@ public class DiatonicScaleFactory extends ScaleFactory {
 			"W,H,W,W,H,W,W");
 	public static StepPattern locrianPattern = new StepPattern("Locrian",
 			"H,W,W,H,W,W,W");
+			*/
 
 }
