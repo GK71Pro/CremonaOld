@@ -6,21 +6,21 @@ import com.gkaraffa.cremona.theoretical.Tone;
 
 public class Triad extends Chord {
 	public Triad(String name, Tone[] tones, HarmonicTonality tonality,
-			HashSet<Integer> degreeSet) {
+			HashSet<HarmonicDegree> degreeSet) {
 		super(name, tones, tonality, degreeSet);
 	}
 
-	public Tone getToneByDegree(int degree) {
-		if (degree == 1) {
+	public Tone getToneByDegree(HarmonicDegree degree) {
+		if (degree == HarmonicDegree.FIRST) {
 			return getTone(0);
 		}
 		else {
 			if (getDegreeSet().contains(degree)) {
 				switch (degree) {
-					case 3:
-					case 4:
+					case THIRD:
+					case FOURTH:
 						return getTone(1);
-					case 5:
+					case FIFTH:
 						return getTone(2);
 					default:
 						return null;

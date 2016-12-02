@@ -15,4 +15,9 @@ public enum MelodicTonality {
 	public String getText() {
 		return text;
 	}
+	
+	public final String toString() {
+		return text;
+	}
+
 }

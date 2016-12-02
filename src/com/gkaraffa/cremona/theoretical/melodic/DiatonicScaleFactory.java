@@ -62,7 +62,7 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 		for (int index = 1; index < toneCount; index++) {
 			Tone cur = TonalSpectrum.traverseDistance(tones[0],
-					intervalPattern.getInterval(index - 1).getDistance());
+					intervalPattern.getInterval(index - 1).getOrdinal());
 			tones[index] = cur;
 		}
 
@@ -93,6 +93,10 @@ public class DiatonicScaleFactory extends ScaleFactory {
 			"2,M3,4,5,A5/M6,M7");
 	public static IntervalPattern locrianPattern = new IntervalPattern("Locrian",
 			"M2,M3,4,A4/D5,A5/M6,M7");
+	public static IntervalPattern harmonicMinorPattern = new IntervalPattern("Harmonic Minor",
+			"2,M3,4,5,A5/M6,7");
+	
+	
 
 
 }

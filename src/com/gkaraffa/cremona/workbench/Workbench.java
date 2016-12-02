@@ -12,7 +12,7 @@ public class Workbench {
 	public static void main(String[] args) {
 		try {
 			ScaleFactory sF = new DiatonicScaleFactory();
-			Scale s = sF.createScale(DiatonicScaleFactory.locrianPattern, Tone.B);
+			Scale s = sF.createScale(DiatonicScaleFactory.harmonicMinorPattern, Tone.A);
 			System.out.println(s);
 
 			for (Tone t : s) {
@@ -24,11 +24,10 @@ public class Workbench {
 			if (s instanceof Harmonizable) {
 				Harmonizable h = (Harmonizable) s;
 				ChordFactory cF = new TriadFactory();
-				Chord c = cF.createChord(h, 1);
-				System.out.println(c);
-
-				for (Tone t : c) {
-					System.out.println(t);
+				
+				for (int i = 1; i <= 7; i++){
+					Chord c = cF.createChord(h, i);
+					System.out.println(c);
 				}
 			}
 		}

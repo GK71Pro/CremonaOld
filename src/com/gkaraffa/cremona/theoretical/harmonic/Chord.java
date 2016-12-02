@@ -6,10 +6,10 @@ import com.gkaraffa.cremona.theoretical.*;
 
 public abstract class Chord extends ToneCollection {
 	private HarmonicTonality tonality;
-	private HashSet<Integer> degreeSet;
-
+	private HashSet<HarmonicDegree> degreeSet;
+	
 	public Chord(String name, Tone[] tones, HarmonicTonality tonality,
-			HashSet<Integer> degreeSet) {
+			HashSet<HarmonicDegree> degreeSet) {
 		super(name, tones);
 		this.tonality = tonality;
 		this.degreeSet = degreeSet;
@@ -19,11 +19,11 @@ public abstract class Chord extends ToneCollection {
 		return tonality;
 	}
 
-	public final HashSet<Integer> getDegreeSet() {
+	public final HashSet<HarmonicDegree> getDegreeSet() {
 		return degreeSet;
 	}
 
-	public abstract Tone getToneByDegree(int degree);
+	public abstract Tone getToneByDegree(HarmonicDegree degree);
 
 	public Iterator<Tone> iterator() {
 		return new ToneIterator();

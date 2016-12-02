@@ -48,7 +48,7 @@ public class TriadFactory extends ChordFactory {
 
 	private HarmonicProfile evaluateProfile(Tone[] toneArray) {
 		HarmonicProfile harmonicProfile = new HarmonicProfile();
-		HashSet<Integer> degreeSet = new LinkedHashSet<Integer>();
+		HashSet<HarmonicDegree> degreeSet = new LinkedHashSet<HarmonicDegree>();
 
 		Interval[] intervalArray = new Interval[2];
 
@@ -58,16 +58,16 @@ public class TriadFactory extends ChordFactory {
 				TonalSpectrum.measureDistance(toneArray[0], toneArray[2]));
 
 		if (intervalArray[0] == Interval.MAJOR_THIRD) {
-			degreeSet.add(3);
+			degreeSet.add(HarmonicDegree.THIRD);
 			if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-				degreeSet.add(5);
+				degreeSet.add(HarmonicDegree.FIFTH);
 				harmonicProfile.harmonicTonality = HarmonicTonality.MAJOR;
 				harmonicProfile.degreeSet = degreeSet;
 				return harmonicProfile;
 			}
 			else
 				if (intervalArray[1] == Interval.AUGMENTED_FIFTH_MINOR_SIXTH) {
-					degreeSet.add(5);
+					degreeSet.add(HarmonicDegree.FIFTH);
 					harmonicProfile.harmonicTonality = HarmonicTonality.AUGMENTED;
 					harmonicProfile.degreeSet = degreeSet;
 					return harmonicProfile;
@@ -75,16 +75,16 @@ public class TriadFactory extends ChordFactory {
 		}
 		else
 			if (intervalArray[0] == Interval.MINOR_THIRD) {
-				degreeSet.add(3);
+				degreeSet.add(HarmonicDegree.THIRD);
 				if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-					degreeSet.add(5);
+					degreeSet.add(HarmonicDegree.FIFTH);
 					harmonicProfile.harmonicTonality = HarmonicTonality.MINOR;
 					harmonicProfile.degreeSet = degreeSet;
 					return harmonicProfile;
 				}
 				else
 					if (intervalArray[1] == Interval.AUGMENTED_FOURTH_DIMINISHED_FIFTH) {
-						degreeSet.add(5);
+						degreeSet.add(HarmonicDegree.FIFTH);
 						harmonicProfile.harmonicTonality = HarmonicTonality.DIMINISHED;
 						harmonicProfile.degreeSet = degreeSet;
 						return harmonicProfile;
@@ -92,9 +92,9 @@ public class TriadFactory extends ChordFactory {
 			}
 			else
 				if (intervalArray[0] == Interval.PERFECT_FOURTH) {
-					degreeSet.add(4);
+					degreeSet.add(HarmonicDegree.FOURTH);
 					if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-						degreeSet.add(5);
+						degreeSet.add(HarmonicDegree.FIFTH);
 						harmonicProfile.harmonicTonality = HarmonicTonality.SUSPENDED_FOURTH;
 						harmonicProfile.degreeSet = degreeSet;
 						return harmonicProfile;
@@ -113,7 +113,7 @@ public class TriadFactory extends ChordFactory {
 
 		for (int index = 1; index < toneCount; index++) {
 			Tone cur = TonalSpectrum.traverseDistance(tones[0],
-					intervalPattern.getInterval(index - 1).getDistance());
+					intervalPattern.getInterval(index - 1).getOrdinal());
 
 			tones[index] = cur;
 		}
@@ -128,7 +128,7 @@ public class TriadFactory extends ChordFactory {
 		toneArray[0] = harmonizableScale.getFirst(scaleDegree);
 		toneArray[1] = harmonizableScale.getThird(scaleDegree);
 		toneArray[2] = harmonizableScale.getFifth(scaleDegree);
-
+		
 		return toneArray;
 	}
 
@@ -144,7 +144,7 @@ public class TriadFactory extends ChordFactory {
 
 	class HarmonicProfile {
 		HarmonicTonality harmonicTonality = null;
-		HashSet<Integer> degreeSet = null;
+		HashSet<HarmonicDegree> degreeSet = null;
 	}
 
 	public static IntervalPattern majorPattern = new IntervalPattern("Major",

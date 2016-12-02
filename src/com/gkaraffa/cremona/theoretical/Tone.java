@@ -18,7 +18,12 @@ public enum Tone {
 		this.text = text;
 	}
 
-	public String getText() {
+	public final String getText() {
 		return text;
 	}
+	
+	public final String toString() {
+		return text;
+	}
+
 }

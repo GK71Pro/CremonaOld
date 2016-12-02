@@ -10,14 +10,14 @@ public class DiatonicScale extends Scale implements Harmonizable {
 	}
 
 	private int calculateEndPoint(int startPoint, int offset) {
-		if (startPoint > 6) {
-			startPoint -= 6;
+		if (startPoint > 7) {
+			startPoint -= 7;
 		}
 
 		startPoint--;
 		int endPoint = startPoint + offset;
-		if (endPoint > 6) {
-			endPoint -= 6;
+		if (endPoint > 7) {
+			endPoint -= 7;
 		}
 
 		return endPoint;
@@ -55,15 +55,10 @@ public class DiatonicScale extends Scale implements Harmonizable {
 		private int index = 0;
 
 		public boolean hasNext() {
-			return index <= getSize();
+			return index < getSize();
 		}
 
 		public Tone next() {
-			if (index == getSize()) {
-				index++;
-				return getTone(0);
-			}
-
 			return getTone(index++);
 		}
 

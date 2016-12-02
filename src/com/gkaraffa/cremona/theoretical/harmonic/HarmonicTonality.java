@@ -22,4 +22,9 @@ public enum HarmonicTonality {
 	public String getText() {
 		return text;
 	}
+	
+	public final String toString() {
+		return text;
+	}
+
 }

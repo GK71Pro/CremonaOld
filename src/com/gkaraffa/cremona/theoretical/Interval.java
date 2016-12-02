@@ -17,25 +17,25 @@ public enum Interval {
 	MAJOR_SEVENTH(11, "Major Seventh", "7"), 
 	OCTAVE(12, "Octave", "O");
 
-	private final int distance;
+	private final int ordinal;
 	private final String text;
 	private final String abbrev;
 	private final static HashMap<Integer, Interval> hashMap = new HashMap<Integer, Interval>();
 
 	static {
 		for (Interval interval : Interval.values()) {
-			hashMap.put(interval.distance, interval);
+			hashMap.put(interval.ordinal, interval);
 		}
 	}
 
-	Interval(int distance, String text, String abbrev) {
-		this.distance = distance;
+	Interval(int ordinal, String text, String abbrev) {
+		this.ordinal = ordinal;
 		this.text = text;
 		this.abbrev = abbrev;
 	}
 
-	public final int getDistance() {
-		return distance;
+	public final int getOrdinal() {
+		return ordinal;
 	}
 
 	public final String getText() {
@@ -44,6 +44,10 @@ public enum Interval {
 
 	public final String getAbbrev() {
 		return abbrev;
+	}
+	
+	public final String toString() {
+		return text;
 	}
 
 	public static final Interval intToInterval(int input)
@@ -57,4 +61,5 @@ public enum Interval {
 
 		return output;
 	}
+	
 }
