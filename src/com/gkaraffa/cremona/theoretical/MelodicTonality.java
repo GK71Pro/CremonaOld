@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.theoretical.melodic;
+package com.gkaraffa.cremona.theoretical;
 
 public enum MelodicTonality {
 	MAJOR("Major"), 

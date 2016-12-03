@@ -1,7 +1,4 @@
-package com.gkaraffa.cremona.theoretical.melodic;
-
-import com.gkaraffa.cremona.theoretical.IntervalPattern;
-import com.gkaraffa.cremona.theoretical.Tone;
+package com.gkaraffa.cremona.theoretical;
 
 public abstract class ScaleFactory {
 

@@ -1,8 +1,6 @@
-package com.gkaraffa.cremona.theoretical.harmonic;
+package com.gkaraffa.cremona.theoretical;
 
 import java.util.HashSet;
-
-import com.gkaraffa.cremona.theoretical.Tone;
 
 public class Triad extends Chord {
 	public Triad(String name, Tone[] tones, HarmonicTonality tonality,

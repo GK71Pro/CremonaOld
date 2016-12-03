@@ -1,13 +1,7 @@
-package com.gkaraffa.cremona.theoretical.harmonic;
+package com.gkaraffa.cremona.theoretical;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-
-import com.gkaraffa.cremona.theoretical.Interval;
-import com.gkaraffa.cremona.theoretical.IntervalPattern;
-import com.gkaraffa.cremona.theoretical.TonalSpectrum;
-import com.gkaraffa.cremona.theoretical.Tone;
-import com.gkaraffa.cremona.theoretical.melodic.Harmonizable;
 
 public class TriadFactory extends ChordFactory {
 

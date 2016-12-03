@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.theoretical.melodic;
+package com.gkaraffa.cremona.theoretical;
 
 import com.gkaraffa.cremona.theoretical.*;
 
