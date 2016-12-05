@@ -3,18 +3,18 @@ package com.gkaraffa.cremona.theoretical;
 import java.util.HashSet;
 
 public class Triad extends Chord {
-	public Triad(String name, Tone[] tones, HarmonicTonality tonality,
-			HashSet<HarmonicDegree> degreeSet) {
-		super(name, tones, tonality, degreeSet);
+	public Triad(String name, Tone[] tones, ChordQuality chordQuality,
+			HashSet<IntervalNumber> intervalNumberSet) {
+		super(name, tones, chordQuality, intervalNumberSet);
 	}
 
-	public Tone getToneByDegree(HarmonicDegree degree) {
-		if (degree == HarmonicDegree.FIRST) {
+	public Tone getToneByDegree(IntervalNumber intervalNumber) {
+		if (intervalNumber == IntervalNumber.UNISON) {
 			return getTone(0);
 		}
 		else {
-			if (getDegreeSet().contains(degree)) {
-				switch (degree) {
+			if (getIntervalNumberSet().contains(intervalNumber)) {
+				switch (intervalNumber) {
 					case THIRD:
 					case FOURTH:
 						return getTone(1);

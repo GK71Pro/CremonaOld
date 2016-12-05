@@ -5,8 +5,8 @@ import com.gkaraffa.cremona.theoretical.*;
 
 public class DiatonicScale extends Scale implements Harmonizable {
 
-	public DiatonicScale(String name, Tone[] tones, MelodicTonality tonality) {
-		super(name, tones, tonality);
+	public DiatonicScale(String name, Tone[] tones, ScaleQuality scaleQuality) {
+		super(name, tones, scaleQuality);
 	}
 
 	private int calculateEndPoint(int startPoint, int offset) {

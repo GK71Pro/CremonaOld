@@ -64,7 +64,7 @@ public class TonalSpectrum {
 	}
 
 	public static Tone traverseInterval(Tone tonic, Interval interval) {
-		return traverseDistance(tonic, interval.getOrdinal());
+		return traverseDistance(tonic, interval.getHalfSteps());
 	}
 
 }

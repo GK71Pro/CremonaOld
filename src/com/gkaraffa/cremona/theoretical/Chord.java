@@ -5,25 +5,25 @@ import java.util.Iterator;
 import com.gkaraffa.cremona.theoretical.*;
 
 public abstract class Chord extends ToneCollection {
-	private HarmonicTonality tonality;
-	private HashSet<HarmonicDegree> degreeSet;
+	private ChordQuality chordQuality;
+	private HashSet<IntervalNumber> intervalNumberSet;
 	
-	public Chord(String name, Tone[] tones, HarmonicTonality tonality,
-			HashSet<HarmonicDegree> degreeSet) {
+	public Chord(String name, Tone[] tones, ChordQuality chordQuality,
+			HashSet<IntervalNumber> intervalNumberSet) {
 		super(name, tones);
-		this.tonality = tonality;
-		this.degreeSet = degreeSet;
+		this.chordQuality = chordQuality;
+		this.intervalNumberSet = intervalNumberSet;
 	}
 
-	public final HarmonicTonality getTonality() {
-		return tonality;
+	public final ChordQuality chordQuality() {
+		return chordQuality;
 	}
 
-	public final HashSet<HarmonicDegree> getDegreeSet() {
-		return degreeSet;
+	public final HashSet<IntervalNumber> getIntervalNumberSet() {
+		return intervalNumberSet;
 	}
 
-	public abstract Tone getToneByDegree(HarmonicDegree degree);
+	public abstract Tone getToneByDegree(IntervalNumber degree);
 
 	public Iterator<Tone> iterator() {
 		return new ToneIterator();

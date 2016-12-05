@@ -1,19 +1,18 @@
 package com.gkaraffa.cremona.theoretical;
 
-import com.gkaraffa.cremona.theoretical.*;
 
 public abstract class Scale extends ToneCollection {
-	private MelodicTonality tonality;
+	private ScaleQuality scaleQuality;
 	private Tone key;
 
-	public Scale(String name, Tone[] tones, MelodicTonality tonality) {
+	public Scale(String name, Tone[] tones, ScaleQuality scaleQuality) {
 		super(name, tones);
-		this.tonality = tonality;
+		this.scaleQuality = scaleQuality;
 		this.key = tones[0];
 	}
 
-	public MelodicTonality getTonality() {
-		return tonality;
+	public ScaleQuality scaleQuality() {
+		return scaleQuality;
 	}
 
 	public Tone getKey() {

@@ -1,8 +1,6 @@
 package com.gkaraffa.cremona.workbench;
 
 import com.gkaraffa.cremona.theoretical.*;
-import com.gkaraffa.cremona.theoretical.melodic.*;
-import com.gkaraffa.cremona.theoretical.harmonic.*;
 
 public class Workbench {
 
@@ -12,7 +10,7 @@ public class Workbench {
 	public static void main(String[] args) {
 		try {
 			ScaleFactory sF = new DiatonicScaleFactory();
-			Scale s = sF.createScale(DiatonicScaleFactory.harmonicMinorPattern, Tone.A);
+			Scale s = sF.createScale(DiatonicScaleFactory.melodicMinorPattern, Tone.A);
 			System.out.println(s);
 
 			for (Tone t : s) {
