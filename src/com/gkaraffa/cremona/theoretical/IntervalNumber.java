@@ -1,7 +1,5 @@
 package com.gkaraffa.cremona.theoretical;
 
-import java.util.HashMap;
-
 public enum IntervalNumber {
 	UNISON("Unison", "1st"),
 	SECOND("Second", "2nd"),

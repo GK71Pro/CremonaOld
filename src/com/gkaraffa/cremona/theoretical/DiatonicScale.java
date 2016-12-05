@@ -1,7 +1,6 @@
 package com.gkaraffa.cremona.theoretical;
 
 import java.util.Iterator;
-import com.gkaraffa.cremona.theoretical.*;
 
 public class DiatonicScale extends Scale implements Harmonizable {
 
