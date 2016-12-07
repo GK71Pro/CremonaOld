@@ -1,15 +1,14 @@
 package com.gkaraffa.cremona.theoretical;
 
-public abstract class ChordFactory {
+public abstract class ChordBuilder {
 
-	public ChordFactory() {
-		// TODO Auto-generated constructor stub
+	public ChordBuilder() {
 	}
 
 	abstract public Chord createChord(IntervalPattern intervalPattern,
 			Tone tonic) throws IllegalArgumentException;
 
 	abstract public Chord createChord(Harmonizable harmonizableScale,
-			int scaleDegree) throws IllegalArgumentException;
+			IntervalNumber intervalNumber) throws IllegalArgumentException;
 
 }

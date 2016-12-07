@@ -8,8 +8,8 @@ public class Triad extends Chord {
 		super(name, tones, chordQuality, intervalNumberSet);
 	}
 
-	public Tone getToneByDegree(IntervalNumber intervalNumber) {
-		if (intervalNumber == IntervalNumber.UNISON) {
+	public Tone getToneByIntervalNumber(IntervalNumber intervalNumber) {
+		if (intervalNumber == IntervalNumber.FIRST) {
 			return getTone(0);
 		}
 		else {

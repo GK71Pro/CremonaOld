@@ -1,8 +1,8 @@
 package com.gkaraffa.cremona.theoretical;
 
-public class DiatonicScaleFactory extends ScaleFactory {
+public class DiatonicScaleBuilder extends ScaleBuilder {
 
-	public DiatonicScaleFactory() {
+	public DiatonicScaleBuilder() {
 	}
 
 	@Override
@@ -19,12 +19,11 @@ public class DiatonicScaleFactory extends ScaleFactory {
 				tones, scaleQuality);
 	}
 
-	private ScaleQuality evaluateScaleQuality(IntervalPattern intervalPattern) {
-		Interval thirdInterval = intervalPattern.getInterval(1);
-		Interval fifthInterval = intervalPattern.getInterval(3);
+	@Override
+	protected ScaleQuality evaluateScaleQuality(IntervalPattern intervalPattern) {
+		Interval thirdInterval = intervalPattern.getIntervalByLocation(1);
+		Interval fifthInterval = intervalPattern.getIntervalByLocation(3);
 		ScaleQuality scaleQuality = null;
-
-		System.out.println(thirdInterval);
 
 		switch (thirdInterval) {
 			case MINOR_THIRD:
@@ -52,22 +51,8 @@ public class DiatonicScaleFactory extends ScaleFactory {
 		return scaleQuality;
 	}
 
-	private Tone[] createToneArray(IntervalPattern intervalPattern, Tone key) {
-		int toneCount = intervalPattern.getSize() + 1;
-		Tone[] tones = new Tone[toneCount];
-
-		tones[0] = key;
-
-		for (int index = 1; index < toneCount; index++) {
-			Tone cur = TonalSpectrum.traverseDistance(tones[0],
-					intervalPattern.getInterval(index - 1).getHalfSteps());
-			tones[index] = cur;
-		}
-
-		return tones;
-	}
-
-	private boolean validateInputPattern(IntervalPattern intervalPattern) {
+	@Override
+	protected boolean validateInputPattern(IntervalPattern intervalPattern) {
 		int stepCount = intervalPattern.getSize();
 
 		if (stepCount != 6) {

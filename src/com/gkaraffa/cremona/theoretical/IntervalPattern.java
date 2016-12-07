@@ -27,8 +27,18 @@ public class IntervalPattern extends TheoreticalObject
 			intervalList.add(currentIntervalUnit);
 		}
 	}
+	
+	public Interval getIntervalByIntervalNumber(IntervalNumber intervalNumber){
+		for(Interval interval: intervalList){
+			if(interval.getIntervalNumber().equals(intervalNumber)){
+				return interval;
+			}
+		}
+		
+		return null;
+	}
 
-	public Interval getInterval(int location) {
+	public Interval getIntervalByLocation(int location) {
 		return intervalList.get(location);
 	}
 
@@ -48,7 +58,7 @@ public class IntervalPattern extends TheoreticalObject
 		}
 
 		public Interval next() {
-			return getInterval(index++);
+			return getIntervalByLocation(index++);
 		}
 
 		public void remove() {

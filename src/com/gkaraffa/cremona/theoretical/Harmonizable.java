@@ -1,6 +1,8 @@
 package com.gkaraffa.cremona.theoretical;
 
 public interface Harmonizable {
+	public Tone getToneAtRelativeInterval(IntervalNumber rootInterval, IntervalNumber offsetInterval);
+	/*
 	public Tone getFirst(int scaleDegree);
 
 	public Tone getThird(int scaleDegree);
@@ -12,4 +14,5 @@ public interface Harmonizable {
 	public Tone getEleventh(int scaleDegree);
 
 	public Tone getThirteenth(int scaleDegree);
+	*/
 }

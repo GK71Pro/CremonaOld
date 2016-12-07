@@ -11,7 +11,7 @@ public abstract class Scale extends ToneCollection {
 		this.key = tones[0];
 	}
 
-	public ScaleQuality scaleQuality() {
+	public ScaleQuality getScaleQuality() {
 		return scaleQuality;
 	}
 

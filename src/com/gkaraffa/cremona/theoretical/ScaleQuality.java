@@ -1,11 +1,11 @@
 package com.gkaraffa.cremona.theoretical;
 
 public enum ScaleQuality {
-	DIMINISHED("Diminished", "d"), 
-	MINOR("Minor", "m"), 
-	PERFECT("Perfect", "P"),
-	MAJOR("Major", "M"), 
-	AUGMENTED("Augmented", "A");
+	DIMINISHED("diminished", "d"), 
+	MINOR("minor", "m"), 
+	PERFECT("perfect", "P"),
+	MAJOR("major", "M"), 
+	AUGMENTED("augmented", "A");
 
 	private final String text;
 	private final String abbrev;

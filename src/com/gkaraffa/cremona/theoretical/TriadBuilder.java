@@ -3,9 +3,9 @@ package com.gkaraffa.cremona.theoretical;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-public class TriadFactory extends ChordFactory {
+public class TriadBuilder extends ChordBuilder {
 
-	public TriadFactory() {
+	public TriadBuilder() {
 	}
 
 	@Override
@@ -20,25 +20,26 @@ public class TriadFactory extends ChordFactory {
 		HarmonicProfile harmonicProfile = evaluateProfile(tones);
 
 		return new Triad(
-				tones[0].getText() + " "
-						+ harmonicProfile.chordQuality.getText(),
-				tones, harmonicProfile.chordQuality, harmonicProfile.intervalNumberSet);
+				tones[0].getText() + " " + harmonicProfile.chordQuality.getText(),
+				tones, harmonicProfile.chordQuality,
+				harmonicProfile.intervalNumberSet);
 
 	}
 
 	@Override
-	public Chord createChord(Harmonizable harmonizableScale, int scaleDegree)
-			throws IllegalArgumentException {
+	public Chord createChord(Harmonizable harmonizableScale,
+			IntervalNumber intervalNumber) throws IllegalArgumentException {
 
-		Tone[] tones = harmonizableScaleAndDegreeToToneArray(harmonizableScale,
-				scaleDegree);
+		Tone[] tones = harmonizableScaleAndIntervalNumberToToneArray(
+				harmonizableScale, intervalNumber);
 		HarmonicProfile harmonicProfile = evaluateProfile(tones);
 
 		return new Triad(
-				tones[0].getText() + " "
-						+ harmonicProfile.chordQuality.getText(),
-				tones, harmonicProfile.chordQuality, harmonicProfile.intervalNumberSet);
+				tones[0].getText() + " " + harmonicProfile.chordQuality.getText(),
+				tones, harmonicProfile.chordQuality,
+				harmonicProfile.intervalNumberSet);
 	}
+	
 
 	private HarmonicProfile evaluateProfile(Tone[] toneArray) {
 		HarmonicProfile harmonicProfile = new HarmonicProfile();
@@ -46,23 +47,20 @@ public class TriadFactory extends ChordFactory {
 
 		Interval[] intervalArray = new Interval[2];
 
-		intervalArray[0] = 
-				Interval.halfStepsAndIntervalNumberToInterval(
-						TonalSpectrum.measureDistance(toneArray[0], toneArray[1]), 
-						IntervalNumber.THIRD);
-		
-		if (intervalArray[0] == null){
-			intervalArray[0] = 
-					Interval.halfStepsAndIntervalNumberToInterval(
-							TonalSpectrum.measureDistance(toneArray[0], toneArray[1]), 
-							IntervalNumber.FOURTH);
+		intervalArray[0] = Interval.halfStepsAndIntervalNumberToInterval(
+				TonalSpectrum.measureDistance(toneArray[0], toneArray[1]),
+				IntervalNumber.THIRD);
+
+		if (intervalArray[0] == null) {
+			intervalArray[0] = Interval.halfStepsAndIntervalNumberToInterval(
+					TonalSpectrum.measureDistance(toneArray[0], toneArray[1]),
+					IntervalNumber.FOURTH);
 		}
-		
-		intervalArray[1] = 
-				Interval.halfStepsAndIntervalNumberToInterval(
-						TonalSpectrum.measureDistance(toneArray[0], toneArray[2]), 
-						IntervalNumber.FIFTH);
-		
+
+		intervalArray[1] = Interval.halfStepsAndIntervalNumberToInterval(
+				TonalSpectrum.measureDistance(toneArray[0], toneArray[2]),
+				IntervalNumber.FIFTH);
+
 		if (intervalArray[0] == Interval.MAJOR_THIRD) {
 			intervalNumber.add(IntervalNumber.THIRD);
 			if (intervalArray[1] == Interval.PERFECT_FIFTH) {
@@ -119,7 +117,7 @@ public class TriadFactory extends ChordFactory {
 
 		for (int index = 1; index < toneCount; index++) {
 			Tone cur = TonalSpectrum.traverseDistance(tones[0],
-					intervalPattern.getInterval(index - 1).getHalfSteps());
+					intervalPattern.getIntervalByLocation(index - 1).getHalfSteps());
 
 			tones[index] = cur;
 		}
@@ -127,14 +125,17 @@ public class TriadFactory extends ChordFactory {
 		return tones;
 	}
 
-	private Tone[] harmonizableScaleAndDegreeToToneArray(
-			Harmonizable harmonizableScale, int scaleDegree) {
+	private Tone[] harmonizableScaleAndIntervalNumberToToneArray(
+			Harmonizable harmonizableScale, IntervalNumber intervalNumber) {
 		Tone[] toneArray = new Tone[3];
 
-		toneArray[0] = harmonizableScale.getFirst(scaleDegree);
-		toneArray[1] = harmonizableScale.getThird(scaleDegree);
-		toneArray[2] = harmonizableScale.getFifth(scaleDegree);
-		
+		toneArray[0] = harmonizableScale.getToneAtRelativeInterval(intervalNumber,
+				IntervalNumber.FIRST);
+		toneArray[1] = harmonizableScale.getToneAtRelativeInterval(intervalNumber,
+				IntervalNumber.THIRD);
+		toneArray[2] = harmonizableScale.getToneAtRelativeInterval(intervalNumber,
+				IntervalNumber.FIFTH);
+
 		return toneArray;
 	}
 

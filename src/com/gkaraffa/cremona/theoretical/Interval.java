@@ -3,7 +3,7 @@ package com.gkaraffa.cremona.theoretical;
 import java.util.HashMap;
 
 public enum Interval {
-	UNISON(0, IntervalNumber.UNISON, IntervalQuality.PERFECT, "Perfect Unison", "P1"),
+	UNISON(0, IntervalNumber.FIRST, IntervalQuality.PERFECT, "Perfect Unison", "P1"),
 	DIMINISHED_SECOND(0, IntervalNumber.SECOND, IntervalQuality.DIMINISHED, "Diminished Second", "d2"),
 	MINOR_SECOND(1, IntervalNumber.SECOND, IntervalQuality.MINOR, "Minor Second", "m2"),
 	MAJOR_SECOND(2, IntervalNumber.SECOND, IntervalQuality.MAJOR, "Major Second", "M2"),

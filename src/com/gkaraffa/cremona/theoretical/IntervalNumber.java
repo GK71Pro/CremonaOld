@@ -1,40 +1,59 @@
 package com.gkaraffa.cremona.theoretical;
 
+import java.util.HashMap;
+
 public enum IntervalNumber {
-	UNISON("Unison", "1st"),
-	SECOND("Second", "2nd"),
-	THIRD("Third", "3rd"),
-	FOURTH("Fourth", "4th"),
-	FIFTH("Fifth", "5th"),
-	SIXTH("Sixth", "6th"),
-	SEVENTH("Seventh", "7th"),
-	EIGHTH("Eighth", "8th"),
-	NINTH("Ninth", "9th"),
-	TENTH("Tenth", "10th"),
-	ELEVENTH("Eleventh", "11th"),
-	TWELFTH("Twelfth", "12th"),
-	THIRTEENTH("Thirteenth", "13th"),
-	FOURTEENTH("Fourteenth", "14th"),
-	FIFTEENTH("Fifteenth", "15th");
+	FIRST(0, "First", "1st"),
+	SECOND(1, "Second", "2nd"),
+	THIRD(2, "Third", "3rd"),
+	FOURTH(3, "Fourth", "4th"),
+	FIFTH(4, "Fifth", "5th"),
+	SIXTH(5, "Sixth", "6th"),
+	SEVENTH(6, "Seventh", "7th"),
+	EIGHTH(7, "Eighth", "8th"),
+	NINTH(8, "Ninth", "9th"),
+	TENTH(9, "Tenth", "10th"),
+	ELEVENTH(10, "Eleventh", "11th"),
+	TWELFTH(11, "Twelfth", "12th"),
+	THIRTEENTH(12, "Thirteenth", "13th"),
+	FOURTEENTH(13, "Fourteenth", "14th"),
+	FIFTEENTH(14, "Fifteenth", "15th");
 	
+	private int position;
 	private String text;
 	private String abbrev;
+	private final static HashMap<Integer, IntervalNumber> hashMap = new HashMap<Integer, IntervalNumber>();
 
-	IntervalNumber(String text, String abbrev){
+	static {
+		for (IntervalNumber intervalNumber : IntervalNumber.values()) {
+			hashMap.put(intervalNumber.position, intervalNumber);
+		}
+	}
+	
+	IntervalNumber(int position, String text, String abbrev){
+		this.position = position;
 		this.text = text;
 		this.abbrev = abbrev;
 	}
 	
+	public final int getPosition() {
+		return this.position;
+	}
+	
 	public final String getText() {
-		return text;
+		return this.text;
 	}
 
 	public final String getAbbrev() {
-		return abbrev;
+		return this.abbrev;
 	}
 	
 	public final String toString() {
-		return text;
+		return this.text;
 	}
-
+	
+	public static final IntervalNumber integerToIntervalNumber(int inputInteger){
+		return hashMap.get(inputInteger);
+	}
+	
 }
