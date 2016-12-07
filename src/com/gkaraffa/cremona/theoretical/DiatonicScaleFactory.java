@@ -1,8 +1,8 @@
 package com.gkaraffa.cremona.theoretical;
 
-public class DiatonicScaleBuilder extends ScaleBuilder {
+public class DiatonicScaleFactory extends ScaleFactory {
 
-	public DiatonicScaleBuilder() {
+	public DiatonicScaleFactory() {
 	}
 
 	@Override

@@ -3,9 +3,9 @@ package com.gkaraffa.cremona.theoretical;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-public class TriadBuilder extends ChordBuilder {
+public class TriadFactory extends ChordFactory {
 
-	public TriadBuilder() {
+	public TriadFactory() {
 	}
 
 	@Override

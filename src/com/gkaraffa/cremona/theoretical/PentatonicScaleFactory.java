@@ -1,8 +1,8 @@
 package com.gkaraffa.cremona.theoretical;
 
-public class PentatonicScaleBuilder extends ScaleBuilder {
+public class PentatonicScaleFactory extends ScaleFactory {
 
-	public PentatonicScaleBuilder() {
+	public PentatonicScaleFactory() {
 	}
 
 	@Override

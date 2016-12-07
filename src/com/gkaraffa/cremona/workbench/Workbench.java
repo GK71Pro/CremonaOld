@@ -9,8 +9,8 @@ public class Workbench {
 
 	public static void main(String[] args) {
 		try {
-			ScaleBuilder sF = new PentatonicScaleBuilder();
-			Scale s = sF.createScale(PentatonicScaleBuilder.pentatonicMajorPattern, Tone.C);
+			ScaleFactory sF = new PentatonicScaleFactory();
+			Scale s = sF.createScale(PentatonicScaleFactory.pentatonicMajorPattern, Tone.C);
 			System.out.println(s + ", " + "a " + s.getScaleQuality() + " scale.");
 
 			for (Tone t : s) {
@@ -21,7 +21,7 @@ public class Workbench {
 
 			if (s instanceof Harmonizable) {
 				Harmonizable h = (Harmonizable) s;
-				ChordBuilder cF = new TriadBuilder();
+				ChordFactory cF = new TriadFactory();
 				
 				/*
 				for (int i = 1; i <= 7; i++){

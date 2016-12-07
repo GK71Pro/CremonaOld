@@ -1,8 +1,8 @@
 package com.gkaraffa.cremona.theoretical;
 
-public abstract class ScaleBuilder {
+public abstract class ScaleFactory {
 
-	public ScaleBuilder() {
+	public ScaleFactory() {
 	}
 
 	abstract public Scale createScale(IntervalPattern intervalPattern, Tone key)

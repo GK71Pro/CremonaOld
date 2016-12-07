@@ -1,8 +1,8 @@
 package com.gkaraffa.cremona.theoretical;
 
-public abstract class ChordBuilder {
+public abstract class ChordFactory {
 
-	public ChordBuilder() {
+	public ChordFactory() {
 	}
 
 	abstract public Chord createChord(IntervalPattern intervalPattern,
