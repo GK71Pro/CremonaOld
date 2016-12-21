@@ -39,7 +39,6 @@ public class TriadFactory extends ChordFactory {
 				tones, harmonicProfile.chordQuality,
 				harmonicProfile.intervalNumberSet);
 	}
-	
 
 	private HarmonicProfile evaluateProfile(Tone[] toneArray) {
 		HarmonicProfile harmonicProfile = new HarmonicProfile();

@@ -20,7 +20,8 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	protected ScaleQuality evaluateScaleQuality(IntervalPattern intervalPattern) {
+	protected ScaleQuality evaluateScaleQuality(
+			IntervalPattern intervalPattern) {
 		Interval thirdInterval = intervalPattern.getIntervalByLocation(1);
 		Interval fifthInterval = intervalPattern.getIntervalByLocation(3);
 		ScaleQuality scaleQuality = null;
@@ -53,36 +54,65 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 	@Override
 	protected boolean validateInputPattern(IntervalPattern intervalPattern) {
-		int stepCount = intervalPattern.getSize();
+		if (intervalPattern.getSize() != 7) {
+			return false;
+		}
 
-		if (stepCount != 6) {
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.SECOND) == null) {
+			return false;
+		}
+
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.THIRD) == null) {
+			return false;
+		}
+
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.FOURTH) == null) {
+			return false;
+		}
+
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.FIFTH) == null) {
+			return false;
+		}
+
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.SIXTH) == null) {
+			return false;
+		}
+
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.SEVENTH) == null) {
+			return false;
+		}
+
+		if (intervalPattern
+				.getIntervalByIntervalNumber(IntervalNumber.EIGHTH) == null) {
 			return false;
 		}
 
 		return true;
 	}
 
-	
 	public static IntervalPattern ionianPattern = new IntervalPattern("Ionian",
-			"M2,M3,P4,P5,M6,M7");
+			"M2,M3,P4,P5,M6,M7,P8");
 	public static IntervalPattern dorianPattern = new IntervalPattern("Dorian",
-			"M2,m3,P4,P5,M6,m7");
+			"M2,m3,P4,P5,M6,m7,P8");
 	public static IntervalPattern phrygianPattern = new IntervalPattern(
-			"Phrygian", "m2,m3,P4,P5,m6,m7");
+			"Phrygian", "m2,m3,P4,P5,m6,m7,P8");
 	public static IntervalPattern lydianPattern = new IntervalPattern("Lydian",
-			"M2,M3,A4,P5,M6,M7");
+			"M2,M3,A4,P5,M6,M7,P8");
 	public static IntervalPattern mixolydianPattern = new IntervalPattern(
-			"Mixolydian", "M2,M3,P4,P5,M6,m7");
+			"Mixolydian", "M2,M3,P4,P5,M6,m7,P8");
 	public static IntervalPattern aeolianPattern = new IntervalPattern("Aeolian",
-			"M2,m3,P4,P5,m6,m7");
+			"M2,m3,P4,P5,m6,m7,P8");
 	public static IntervalPattern locrianPattern = new IntervalPattern("Locrian",
-			"m2,m3,P4,d5,m6,m7");
-	public static IntervalPattern harmonicMinorPattern = new IntervalPattern("Harmonic Minor",
-			"M2,m3,P4,P5,m6,M7");
-	public static IntervalPattern melodicMinorPattern = new IntervalPattern("Melodic Minor",
-			"M2,m3,P4,P5,M6,M7");
-	
-	
-
+			"m2,m3,P4,d5,m6,m7,P8");
+	public static IntervalPattern harmonicMinorPattern = new IntervalPattern(
+			"Harmonic Minor", "M2,m3,P4,P5,m6,M7,P8");
+	public static IntervalPattern melodicMinorPattern = new IntervalPattern(
+			"Melodic Minor", "M2,m3,P4,P5,M6,M7,P8");
 
 }

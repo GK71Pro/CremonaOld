@@ -1,16 +1,22 @@
 package com.gkaraffa.cremona.theoretical;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.TreeSet;
 
-import com.gkaraffa.cremona.common.CremonaException;
-
-public abstract class ToneCollection extends TheoreticalObject
+public class ToneCollection extends TheoreticalObject
 		implements Iterable<Tone> {
-	private Tone[] tones = null;
+	private final Tone[] tones;
 
-	public ToneCollection(String name, Tone[] tones) {
+	public ToneCollection(String name, Tone[] tones)
+			throws IllegalArgumentException {
 		super(name);
-		this.tones = tones;
+		if (this.areTonesDistinct(tones)) {
+			this.tones = tones;
+		}
+		else {
+			throw new IllegalArgumentException("Elements are not distinct.");
+		}
 	}
 
 	public boolean contains(Tone target) {
@@ -22,6 +28,51 @@ public abstract class ToneCollection extends TheoreticalObject
 
 		return false;
 	}
+
+	public boolean contains(ToneCollection target) {
+		for (Tone targetElement : target) {
+			boolean found = false;
+
+			for (Tone tone : tones) {
+				if (tone.equals(targetElement)) {
+					found = true;
+				}
+			}
+
+			if (!found) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public ToneCollection intersection(ToneCollection target) {
+		ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder("Intersection of " + this.getText() + " and " + target.getText());
+		
+		for (Tone outerTone: tones){
+			for (Tone innerTone: target){
+				if (innerTone.equals(outerTone)){
+					toneCollectionBuilder.insert(innerTone);
+					break;
+				}
+			}
+		}
+		
+		return toneCollectionBuilder.toToneCollection();
+	}
+
+	
+	public ToneCollection union(ToneCollection target) {
+		ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder("Union of " + this.getText() + " and " + target.getText(), this);
+		
+		for(Tone tone: target){
+			toneCollectionBuilder.insert(tone);
+		}
+		
+		return toneCollectionBuilder.toToneCollection();
+	}
+	
 
 	public String getSpellingString() {
 		StringBuilder sb = new StringBuilder();
@@ -48,16 +99,27 @@ public abstract class ToneCollection extends TheoreticalObject
 		}
 	}
 
-	public int getPosition(Tone target) throws CremonaException {
+	public int getPosition(Tone target) throws IllegalArgumentException {
 		for (int i = 0; i < tones.length; i++) {
 			if (this.tones[i].equals(target)) {
 				return i;
 			}
 		}
 
-		throw new CremonaException("Tone does not exist in this ToneCollection");
+		throw new IllegalArgumentException(
+				"Tone does not exist in this ToneCollection");
 	}
-	
+
+	private boolean areTonesDistinct(Tone[] tones) {
+		TreeSet<Tone> treeSet = new TreeSet<Tone>(Arrays.asList(tones));
+
+		if (tones.length != treeSet.size()) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public Iterator<Tone> iterator() {
 		return new ToneIterator();
 	}

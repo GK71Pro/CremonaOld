@@ -8,5 +8,4 @@ public class PentatonicScale extends Scale {
 		// TODO Auto-generated constructor stub
 	}
 
-
 }

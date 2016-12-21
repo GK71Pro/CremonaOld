@@ -1,6 +1,5 @@
 package com.gkaraffa.cremona.theoretical;
 
-
 public abstract class Scale extends ToneCollection {
 	private ScaleQuality scaleQuality;
 	private Tone key;

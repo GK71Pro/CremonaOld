@@ -27,14 +27,14 @@ public class IntervalPattern extends TheoreticalObject
 			intervalList.add(currentIntervalUnit);
 		}
 	}
-	
-	public Interval getIntervalByIntervalNumber(IntervalNumber intervalNumber){
-		for(Interval interval: intervalList){
-			if(interval.getIntervalNumber().equals(intervalNumber)){
+
+	public Interval getIntervalByIntervalNumber(IntervalNumber intervalNumber) {
+		for (Interval interval : intervalList) {
+			if (interval.getIntervalNumber().equals(intervalNumber)) {
 				return interval;
 			}
 		}
-		
+
 		return null;
 	}
 
