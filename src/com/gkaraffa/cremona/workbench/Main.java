@@ -17,6 +17,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("This is the hotfix");
 		try {
 			ScaleFactory sF = new DiatonicScaleFactory();
 			Scale cScale = sF.createScale(DiatonicScaleFactory.ionianPattern, Tone.C);
