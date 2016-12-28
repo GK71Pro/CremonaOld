@@ -19,6 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("This was added in the Dev branch");
 		System.out.println("This is the hotfix");
+		System.out.println("Back at master");
 		try {
 			ScaleFactory sF = new DiatonicScaleFactory();
 			Scale cScale = sF.createScale(DiatonicScaleFactory.ionianPattern, Tone.C);
