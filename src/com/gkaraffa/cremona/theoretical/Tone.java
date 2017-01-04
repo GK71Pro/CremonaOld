@@ -7,10 +7,12 @@ public enum Tone {
 	DSHARP_EFLAT("D#/Eb"), 
 	E("E"), 
 	F("F"), 
-	FSHARP_GFLAT("F#/Gb"), G("G"), 
+	FSHARP_GFLAT("F#/Gb"), 
+	G("G"), 
 	GSHARP_AFLAT("G#/Ab"), 
 	A("A"), 
-	ASHARP_BFLAT("A#/Bb"), B("B");
+	ASHARP_BFLAT("A#/Bb"), 
+	B("B");
 
 	private final String text;
 

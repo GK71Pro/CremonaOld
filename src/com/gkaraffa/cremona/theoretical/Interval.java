@@ -29,6 +29,7 @@ public enum Interval {
 	DIMINISHED_EIGHTH(11, IntervalNumber.EIGHTH, IntervalQuality.DIMINISHED, "Diminished Eighth", "d8"),
 	PERFECT_EIGHTH(12, IntervalNumber.EIGHTH, IntervalQuality.PERFECT, "Perfect Eighth", "P8");
 
+	
 	private final int halfSteps;
 	private final IntervalNumber intervalNumber;
 	private final IntervalQuality intervalQuality;
