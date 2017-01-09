@@ -1,16 +1,5 @@
 package com.gkaraffa.cremona.workbench;
 
-import com.gkaraffa.cremona.theoretical.Chord;
-import com.gkaraffa.cremona.theoretical.ChordFactory;
-import com.gkaraffa.cremona.theoretical.DiatonicScaleFactory;
-import com.gkaraffa.cremona.theoretical.Harmonizable;
-import com.gkaraffa.cremona.theoretical.IntervalNumber;
-import com.gkaraffa.cremona.theoretical.Scale;
-import com.gkaraffa.cremona.theoretical.ScaleFactory;
-import com.gkaraffa.cremona.theoretical.Tone;
-import com.gkaraffa.cremona.theoretical.ToneCollection;
-import com.gkaraffa.cremona.theoretical.TriadFactory;
-
 public class Main {
 
 	public Main() {
@@ -18,6 +7,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+/*
+ * try {
 			ScaleFactory sF = new DiatonicScaleFactory();
 			Scale cScale = sF.createScale(DiatonicScaleFactory.ionianPattern, Tone.C);
 			Scale gScale = sF.createScale(DiatonicScaleFactory.ionianPattern, Tone.G);
@@ -44,9 +43,14 @@ public class Main {
 				System.out.println(tone);
 			}
 			System.out.println(tC);
+			
+			Guitar g = new Guitar();
+			System.out.println(g.displayToneSeries(new DiatonicScaleFactory().createScale(DiatonicScaleFactory.ionianPattern, Tone.C)));
+			
+			Keyboard k = new Keyboard();
+			System.out.println(k.toCSV());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-}
+ */
