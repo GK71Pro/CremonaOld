@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.views;
+package com.gkaraffa.cremona.instrument;
 
 public abstract class InstrumentViewFactory {
 
