@@ -1,5 +1,7 @@
 package com.gkaraffa.cremona.workbench;
 
+import com.gkaraffa.cremona.theoretical.*;
+
 public class Main {
 
 	public Main() {
@@ -7,7 +9,20 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+			Tone[] tones = new Tone[4];
+			tones[0] = Tone.A;
+			for (int i = 1; i <= 3; i++) {
+				tones[i] = TonalSpectrum.traverseInterval(tones[i - 1],
+						Interval.PERFECT_FIFTH);
+			}
 
+			for (Tone tone : tones) {
+				System.out.println(tone);
+			}
+			
+			System.out.println(TonalSpectrum.traverseInterval(Tone.DSHARP_EFLAT, Interval.PERFECT_FIFTH));
+			System.out.println(TonalSpectrum.traverseInterval(Tone.ASHARP_BFLAT, Interval.PERFECT_FOURTH));
+			System.out.println(TonalSpectrum.reverseInterval(Tone.DSHARP_EFLAT, Interval.PERFECT_FOURTH));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
