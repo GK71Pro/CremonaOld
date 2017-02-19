@@ -2,10 +2,6 @@ package com.gkaraffa.cremona.workbench;
 
 import com.gkaraffa.cremona.theoretical.*;
 
-// Testing Keyword substitution
-// $Id$
-// Test end
-
 public class Main {
 
 	public Main() {
