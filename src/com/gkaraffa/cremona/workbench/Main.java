@@ -9,6 +9,20 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
+			ScaleFactory scaleFactory = new DiatonicScaleFactory();
+			Scale scale = scaleFactory.createScale(IntervalPattern.ionianPattern, Tone.DSHARP_EFLAT);
+			for (Tone tone: scale){
+				System.out.println(tone);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+/*
+ * 		try {
 			Tone[] tones = new Tone[4];
 			tones[0] = Tone.A;
 			for (int i = 1; i <= 3; i++) {
@@ -27,9 +41,8 @@ public class Main {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-}
-
+ * 
+ */
 /*
  * try {
 			ScaleFactory sF = new DiatonicScaleFactory();
