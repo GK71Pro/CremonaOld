@@ -95,24 +95,4 @@ public class DiatonicScaleFactory extends ScaleFactory {
 
 		return true;
 	}
-
-	public static IntervalPattern ionianPattern = new IntervalPattern("Ionian",
-			"M2,M3,P4,P5,M6,M7,P8");
-	public static IntervalPattern dorianPattern = new IntervalPattern("Dorian",
-			"M2,m3,P4,P5,M6,m7,P8");
-	public static IntervalPattern phrygianPattern = new IntervalPattern(
-			"Phrygian", "m2,m3,P4,P5,m6,m7,P8");
-	public static IntervalPattern lydianPattern = new IntervalPattern("Lydian",
-			"M2,M3,A4,P5,M6,M7,P8");
-	public static IntervalPattern mixolydianPattern = new IntervalPattern(
-			"Mixolydian", "M2,M3,P4,P5,M6,m7,P8");
-	public static IntervalPattern aeolianPattern = new IntervalPattern("Aeolian",
-			"M2,m3,P4,P5,m6,m7,P8");
-	public static IntervalPattern locrianPattern = new IntervalPattern("Locrian",
-			"m2,m3,P4,d5,m6,m7,P8");
-	public static IntervalPattern harmonicMinorPattern = new IntervalPattern(
-			"Harmonic Minor", "M2,m3,P4,P5,m6,M7,P8");
-	public static IntervalPattern melodicMinorPattern = new IntervalPattern(
-			"Melodic Minor", "M2,m3,P4,P5,M6,M7,P8");
-
 }
