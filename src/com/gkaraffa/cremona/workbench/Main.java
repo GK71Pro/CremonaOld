@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			ScaleFactory scaleFactory = new DiatonicScaleFactory();
-			Scale scale = scaleFactory.createScale(IntervalPattern.ionianPattern, Tone.DSHARP_EFLAT);
+			Scale scale = scaleFactory.createScale(ScalarIntervalPattern.ionianPattern, Tone.DSHARP_EFLAT);
 			for (Tone tone: scale){
 				System.out.println(tone);
 			}

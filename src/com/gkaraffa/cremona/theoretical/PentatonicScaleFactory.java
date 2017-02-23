@@ -6,24 +6,24 @@ public class PentatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	public Scale createScale(IntervalPattern intervalPattern, Tone key)
+	public Scale createScale(ScalarIntervalPattern scalarIntervalPattern, Tone key)
 			throws IllegalArgumentException {
-		if (!validateInputPattern(intervalPattern)) {
+		if (!validateInputPattern(scalarIntervalPattern)) {
 			throw new IllegalArgumentException("Input pattern is invalid.");
 		}
 
-		ScaleQuality scaleQuality = evaluateScaleQuality(intervalPattern);
-		Tone[] tones = this.createToneArray(intervalPattern, key);
+		ScaleQuality scaleQuality = evaluateScaleQuality(scalarIntervalPattern);
+		Tone[] tones = this.createToneArray(scalarIntervalPattern, key);
 
 		return new PentatonicScale(
-				key.getText() + " " + intervalPattern.getText(), tones,
+				key.getText() + " " + scalarIntervalPattern.getText(), tones,
 				scaleQuality);
 	}
 
 	@Override
 	protected ScaleQuality evaluateScaleQuality(
-			IntervalPattern intervalPattern) {
-		Interval thirdInterval = intervalPattern
+			ScalarIntervalPattern scalarIntervalPattern) {
+		Interval thirdInterval = scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.THIRD);
 		ScaleQuality scaleQuality = null;
 
@@ -44,31 +44,26 @@ public class PentatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	protected boolean validateInputPattern(IntervalPattern intervalPattern) {
-		if (intervalPattern.getSize() != 5) {
+	protected boolean validateInputPattern(ScalarIntervalPattern scalarIntervalPattern) {
+		if (scalarIntervalPattern.getSize() != 5) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.THIRD) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.FIFTH) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.EIGHTH) == null) {
 			return false;
 		}
 
 		return true;
 	}
-
-	public static IntervalPattern pentatonicMajorPattern = new IntervalPattern(
-			"Pentatonic Major", "M2,M3,P5,M6,P8");
-	public static IntervalPattern pentatonicMinorPattern = new IntervalPattern(
-			"Pentatonic Minor", "m3,P4,P5,m7,P8");
 }

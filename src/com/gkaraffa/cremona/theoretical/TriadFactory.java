@@ -9,14 +9,14 @@ public class TriadFactory extends ChordFactory {
 	}
 
 	@Override
-	public Chord createChord(IntervalPattern intervalPattern, Tone tonic)
+	public Chord createChord(ChordIntervalPattern chordIntervalPattern, Tone tonic)
 			throws IllegalArgumentException {
 
-		if (!validateIntervalPattern(intervalPattern)) {
+		if (!validateIntervalPattern(chordIntervalPattern)) {
 			throw new IllegalArgumentException("Not valid number of intervals.");
 		}
 
-		Tone[] tones = intervalPatternAndTonicToToneArray(intervalPattern, tonic);
+		Tone[] tones = intervalPatternAndTonicToToneArray(chordIntervalPattern, tonic);
 		HarmonicProfile harmonicProfile = evaluateProfile(tones);
 
 		return new Triad(
@@ -152,16 +152,4 @@ public class TriadFactory extends ChordFactory {
 		ChordQuality chordQuality = null;
 		HashSet<IntervalNumber> intervalNumberSet = null;
 	}
-
-	public static IntervalPattern majorPattern = new IntervalPattern("Major",
-			"M3,P5");
-	public static IntervalPattern minorPattern = new IntervalPattern("Minor",
-			"m3,P5");
-	public static IntervalPattern diminishedPattern = new IntervalPattern(
-			"Minor", "m3,d5");
-	public static IntervalPattern augmentedPattern = new IntervalPattern(
-			"Augmented", "M3,A5");
-	public static IntervalPattern suspendedFourthPattern = new IntervalPattern(
-			"Suspended 4th", "P4,P5");
-
 }

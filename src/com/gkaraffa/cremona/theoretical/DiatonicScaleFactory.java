@@ -6,24 +6,24 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	public Scale createScale(IntervalPattern intervalPattern, Tone key)
+	public Scale createScale(ScalarIntervalPattern scalarIntervalPattern, Tone key)
 			throws IllegalArgumentException {
-		if (!validateInputPattern(intervalPattern)) {
+		if (!validateInputPattern(scalarIntervalPattern)) {
 			throw new IllegalArgumentException("Input pattern is invalid.");
 		}
 
-		ScaleQuality scaleQuality = evaluateScaleQuality(intervalPattern);
-		Tone[] tones = this.createToneArray(intervalPattern, key);
+		ScaleQuality scaleQuality = evaluateScaleQuality(scalarIntervalPattern);
+		Tone[] tones = this.createToneArray(scalarIntervalPattern, key);
 
-		return new DiatonicScale(key.getText() + " " + intervalPattern.getText(),
+		return new DiatonicScale(key.getText() + " " + scalarIntervalPattern.getText(),
 				tones, scaleQuality);
 	}
 
 	@Override
 	protected ScaleQuality evaluateScaleQuality(
-			IntervalPattern intervalPattern) {
-		Interval thirdInterval = intervalPattern.getIntervalByLocation(1);
-		Interval fifthInterval = intervalPattern.getIntervalByLocation(3);
+			ScalarIntervalPattern scalarIntervalPattern) {
+		Interval thirdInterval = scalarIntervalPattern.getIntervalByLocation(1);
+		Interval fifthInterval = scalarIntervalPattern.getIntervalByLocation(3);
 		ScaleQuality scaleQuality = null;
 
 		switch (thirdInterval) {
@@ -53,42 +53,42 @@ public class DiatonicScaleFactory extends ScaleFactory {
 	}
 
 	@Override
-	protected boolean validateInputPattern(IntervalPattern intervalPattern) {
-		if (intervalPattern.getSize() != 7) {
+	protected boolean validateInputPattern(ScalarIntervalPattern scalarIntervalPattern) {
+		if (scalarIntervalPattern.getSize() != 7) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.SECOND) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.THIRD) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.FOURTH) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.FIFTH) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.SIXTH) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.SEVENTH) == null) {
 			return false;
 		}
 
-		if (intervalPattern
+		if (scalarIntervalPattern
 				.getIntervalByIntervalNumber(IntervalNumber.EIGHTH) == null) {
 			return false;
 		}
