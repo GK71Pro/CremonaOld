@@ -2,67 +2,65 @@ package com.gkaraffa.cremona.theoretical;
 
 import java.util.*;
 
-public class IntervalPattern extends TheoreticalObject
-		implements Iterable<Interval> {
-	private List<Interval> intervalList = new ArrayList<Interval>();
-	private static HashMap<String, Interval> lookup = new HashMap<String, Interval>();
+public class IntervalPattern extends TheoreticalObject implements Iterable<Interval> {
+  private List<Interval> intervalList = new ArrayList<Interval>();
+  private static HashMap<String, Interval> lookup = new HashMap<String, Interval>();
 
-	static {
-		for (Interval currInterval : Interval.values()) {
-			lookup.put(currInterval.getAbbrev(), currInterval);
-		}
-	}
+  static {
+    for (Interval currInterval : Interval.values()) {
+      lookup.put(currInterval.getAbbrev(), currInterval);
+    }
+  }
 
-	public IntervalPattern(String name, String inPatternString)
-			throws IllegalArgumentException {
-		super(name);
+  public IntervalPattern(String name, String inPatternString) throws IllegalArgumentException {
+    super(name);
 
-		String[] intervalArray = inPatternString.split(",");
-		for (String currentIntervalString : intervalArray) {
-			Interval currentIntervalUnit = lookup.get(currentIntervalString);
-			if (currentIntervalUnit == null) {
-				throw new IllegalArgumentException("Illegal pattern string.");
-			}
+    String[] intervalArray = inPatternString.split(",");
+    for (String currentIntervalString : intervalArray) {
+      Interval currentIntervalUnit = lookup.get(currentIntervalString);
+      if (currentIntervalUnit == null) {
+        throw new IllegalArgumentException("Illegal pattern string.");
+      }
 
-			intervalList.add(currentIntervalUnit);
-		}
-	}
+      intervalList.add(currentIntervalUnit);
+    }
+  }
 
-	public Interval getIntervalByIntervalNumber(IntervalNumber intervalNumber) {
-		for (Interval interval : intervalList) {
-			if (interval.getIntervalNumber().equals(intervalNumber)) {
-				return interval;
-			}
-		}
+  public Interval getIntervalByIntervalNumber(IntervalNumber intervalNumber) {
+    for (Interval interval : intervalList) {
+      if (interval.getIntervalNumber().equals(intervalNumber)) {
+        return interval;
+      }
+    }
 
-		return null;
-	}
+    return null;
+  }
 
-	public Interval getIntervalByLocation(int location) {
-		return intervalList.get(location);
-	}
+  public Interval getIntervalByLocation(int location) {
+    return intervalList.get(location);
+  }
 
-	public int getSize() {
-		return intervalList.size();
-	}
+  public int getSize() {
+    return intervalList.size();
+  }
 
-	public Iterator<Interval> iterator() {
-		return new IntervalIterator();
-	}
+  public Iterator<Interval> iterator() {
+    return new IntervalIterator();
+  }
 
-	class IntervalIterator implements Iterator<Interval> {
-		private int index = 0;
+  class IntervalIterator implements Iterator<Interval> {
+    private int index = 0;
 
-		public boolean hasNext() {
-			return index < getSize();
-		}
+    public boolean hasNext() {
+      return index < getSize();
+    }
 
-		public Interval next() {
-			return getIntervalByLocation(index++);
-		}
+    public Interval next() {
+      return getIntervalByLocation(index++);
+    }
 
-		public void remove() {
-			throw new UnsupportedOperationException("not supported yet");
-		}
-	}
+    public void remove() {
+      throw new UnsupportedOperationException("not supported yet");
+    }
+  }
 }

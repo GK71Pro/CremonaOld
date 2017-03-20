@@ -5,151 +5,95 @@ import java.util.LinkedHashSet;
 
 public class TriadFactory extends ChordFactory {
 
-	public TriadFactory() {
-	}
+  public TriadFactory() {
+  }
 
-	@Override
-	public Chord createChord(ChordIntervalPattern chordIntervalPattern, Tone tonic)
-			throws IllegalArgumentException {
+  @Override
+  public Chord createChordFromIntervalPattern(ChordIntervalPattern chordIntervalPattern, Tone tonic)
+      throws IllegalArgumentException {
 
-		if (!validateIntervalPattern(chordIntervalPattern)) {
-			throw new IllegalArgumentException("Not valid number of intervals.");
-		}
+    Tone[] tones = intervalPatternAndTonicToToneArray(chordIntervalPattern, tonic);
+    HarmonicProfile harmonicProfile = evaluateProfile(tones);
 
-		Tone[] tones = intervalPatternAndTonicToToneArray(chordIntervalPattern, tonic);
-		HarmonicProfile harmonicProfile = evaluateProfile(tones);
+    return new Triad(tones[0].getText() + " " + harmonicProfile.chordQuality.getText(), tones,
+        harmonicProfile.chordQuality, harmonicProfile.intervalNumberSet);
+  }
 
-		return new Triad(
-				tones[0].getText() + " " + harmonicProfile.chordQuality.getText(),
-				tones, harmonicProfile.chordQuality,
-				harmonicProfile.intervalNumberSet);
+  @Override
+  public Chord createChordFromHarmonizable(Harmonizable harmonizableScale,
+      IntervalNumber intervalNumber) throws IllegalArgumentException {
 
-	}
+    Tone[] tones = harmonizableScaleAndIntervalNumberToToneArray(harmonizableScale, intervalNumber,
+        3);
+    HarmonicProfile harmonicProfile = evaluateProfile(tones);
 
-	@Override
-	public Chord createChord(Harmonizable harmonizableScale,
-			IntervalNumber intervalNumber) throws IllegalArgumentException {
+    return new Triad(tones[0].getText() + " " + harmonicProfile.chordQuality.getText(), tones,
+        harmonicProfile.chordQuality, harmonicProfile.intervalNumberSet);
+  }
 
-		Tone[] tones = harmonizableScaleAndIntervalNumberToToneArray(
-				harmonizableScale, intervalNumber);
-		HarmonicProfile harmonicProfile = evaluateProfile(tones);
+  @Override
+  protected HarmonicProfile evaluateProfile(Tone[] toneArray) {
+    HarmonicProfile harmonicProfile = new HarmonicProfile();
+    HashSet<IntervalNumber> intervalNumber = new LinkedHashSet<IntervalNumber>();
+    Interval[] intervalArray = this.convertToneArrayToIntervalArray(toneArray);
 
-		return new Triad(
-				tones[0].getText() + " " + harmonicProfile.chordQuality.getText(),
-				tones, harmonicProfile.chordQuality,
-				harmonicProfile.intervalNumberSet);
-	}
+    if (intervalArray[0] == Interval.MAJOR_THIRD) {
+      intervalNumber.add(IntervalNumber.THIRD);
 
-	private HarmonicProfile evaluateProfile(Tone[] toneArray) {
-		HarmonicProfile harmonicProfile = new HarmonicProfile();
-		HashSet<IntervalNumber> intervalNumber = new LinkedHashSet<IntervalNumber>();
+      if (intervalArray[1] == Interval.PERFECT_FIFTH) {
+        intervalNumber.add(IntervalNumber.FIFTH);
+        harmonicProfile.chordQuality = ChordQuality.MAJOR;
+        harmonicProfile.intervalNumberSet = intervalNumber;
 
-		Interval[] intervalArray = new Interval[2];
+        return harmonicProfile;
+      }
+      else {
+        if (intervalArray[1] == Interval.AUGMENTED_FIFTH) {
+          intervalNumber.add(IntervalNumber.FIFTH);
+          harmonicProfile.chordQuality = ChordQuality.AUGMENTED;
+          harmonicProfile.intervalNumberSet = intervalNumber;
 
-		intervalArray[0] = Interval.halfStepsAndIntervalNumberToInterval(
-				TonalSpectrum.measureDistance(toneArray[0], toneArray[1]),
-				IntervalNumber.THIRD);
+          return harmonicProfile;
+        }
+      }
+    }
+    else {
+      if (intervalArray[0] == Interval.MINOR_THIRD) {
+        intervalNumber.add(IntervalNumber.THIRD);
 
-		if (intervalArray[0] == null) {
-			intervalArray[0] = Interval.halfStepsAndIntervalNumberToInterval(
-					TonalSpectrum.measureDistance(toneArray[0], toneArray[1]),
-					IntervalNumber.FOURTH);
-		}
+        if (intervalArray[1] == Interval.PERFECT_FIFTH) {
+          intervalNumber.add(IntervalNumber.FIFTH);
+          harmonicProfile.chordQuality = ChordQuality.MINOR;
+          harmonicProfile.intervalNumberSet = intervalNumber;
 
-		intervalArray[1] = Interval.halfStepsAndIntervalNumberToInterval(
-				TonalSpectrum.measureDistance(toneArray[0], toneArray[2]),
-				IntervalNumber.FIFTH);
+          return harmonicProfile;
+        }
+        else {
+          if (intervalArray[1] == Interval.DIMINISHED_FIFTH) {
+            intervalNumber.add(IntervalNumber.FIFTH);
+            harmonicProfile.chordQuality = ChordQuality.DIMINISHED;
+            harmonicProfile.intervalNumberSet = intervalNumber;
 
-		if (intervalArray[0] == Interval.MAJOR_THIRD) {
-			intervalNumber.add(IntervalNumber.THIRD);
-			if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-				intervalNumber.add(IntervalNumber.FIFTH);
-				harmonicProfile.chordQuality = ChordQuality.MAJOR;
-				harmonicProfile.intervalNumberSet = intervalNumber;
-				return harmonicProfile;
-			}
-			else
-				if (intervalArray[1] == Interval.AUGMENTED_FIFTH) {
-					intervalNumber.add(IntervalNumber.FIFTH);
-					harmonicProfile.chordQuality = ChordQuality.AUGMENTED;
-					harmonicProfile.intervalNumberSet = intervalNumber;
-					return harmonicProfile;
-				}
-		}
-		else
-			if (intervalArray[0] == Interval.MINOR_THIRD) {
-				intervalNumber.add(IntervalNumber.THIRD);
-				if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-					intervalNumber.add(IntervalNumber.FIFTH);
-					harmonicProfile.chordQuality = ChordQuality.MINOR;
-					harmonicProfile.intervalNumberSet = intervalNumber;
-					return harmonicProfile;
-				}
-				else
-					if (intervalArray[1] == Interval.DIMINISHED_FIFTH) {
-						intervalNumber.add(IntervalNumber.FIFTH);
-						harmonicProfile.chordQuality = ChordQuality.DIMINISHED;
-						harmonicProfile.intervalNumberSet = intervalNumber;
-						return harmonicProfile;
-					}
-			}
-			else
-				if (intervalArray[0] == Interval.PERFECT_FOURTH) {
-					intervalNumber.add(IntervalNumber.FOURTH);
-					if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-						intervalNumber.add(IntervalNumber.FIFTH);
-						harmonicProfile.chordQuality = ChordQuality.SUSPENDED_FOURTH;
-						harmonicProfile.intervalNumberSet = intervalNumber;
-						return harmonicProfile;
-					}
-				}
+            return harmonicProfile;
+          }
+        }
+      }
+      else {
+        if (intervalArray[0] == Interval.PERFECT_FOURTH) {
+          intervalNumber.add(IntervalNumber.FOURTH);
 
-		throw new IllegalArgumentException("Not valid triad intervals.");
-	}
+          if (intervalArray[1] == Interval.PERFECT_FIFTH) {
+            intervalNumber.add(IntervalNumber.FIFTH);
+            harmonicProfile.chordQuality = ChordQuality.SUSPENDED_FOURTH;
+            harmonicProfile.intervalNumberSet = intervalNumber;
 
-	private Tone[] intervalPatternAndTonicToToneArray(
-			IntervalPattern intervalPattern, Tone tonic) {
-		int toneCount = intervalPattern.getSize() + 1;
-		Tone[] tones = new Tone[toneCount];
+            return harmonicProfile;
+          }
+        }
+      }
+    }
 
-		tones[0] = tonic;
+    throw new IllegalArgumentException("Not valid triad intervals.");
+  }
 
-		for (int index = 1; index < toneCount; index++) {
-			Tone cur = TonalSpectrum.traverseDistance(tones[0],
-					intervalPattern.getIntervalByLocation(index - 1).getHalfSteps());
-
-			tones[index] = cur;
-		}
-
-		return tones;
-	}
-
-	private Tone[] harmonizableScaleAndIntervalNumberToToneArray(
-			Harmonizable harmonizableScale, IntervalNumber intervalNumber) {
-		Tone[] toneArray = new Tone[3];
-
-		toneArray[0] = harmonizableScale.getToneAtRelativeInterval(intervalNumber,
-				IntervalNumber.FIRST);
-		toneArray[1] = harmonizableScale.getToneAtRelativeInterval(intervalNumber,
-				IntervalNumber.THIRD);
-		toneArray[2] = harmonizableScale.getToneAtRelativeInterval(intervalNumber,
-				IntervalNumber.FIFTH);
-
-		return toneArray;
-	}
-
-	private boolean validateIntervalPattern(IntervalPattern intervalPattern) {
-		int intervalCount = intervalPattern.getSize();
-
-		if (intervalCount != 2) {
-			return false;
-		}
-
-		return true;
-	}
-
-	class HarmonicProfile {
-		ChordQuality chordQuality = null;
-		HashSet<IntervalNumber> intervalNumberSet = null;
-	}
 }

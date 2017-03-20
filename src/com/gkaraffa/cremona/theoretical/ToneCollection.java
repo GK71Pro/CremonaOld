@@ -4,140 +4,137 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-public class ToneCollection extends TheoreticalObject
-		implements Iterable<Tone> {
-	private final Tone[] tones;
+public class ToneCollection extends TheoreticalObject implements Iterable<Tone> {
+  private final Tone[] tones;
 
-	public ToneCollection(String name, Tone[] tones)
-			throws IllegalArgumentException {
-		super(name);
-		if (this.areTonesDistinct(tones)) {
-			this.tones = tones;
-		}
-		else {
-			throw new IllegalArgumentException("Elements are not distinct.");
-		}
-	}
+  public ToneCollection(String name, Tone[] tones) throws IllegalArgumentException {
+    super(name);
+    if (this.areTonesDistinct(tones)) {
+      this.tones = tones;
+    }
+    else {
+      throw new IllegalArgumentException("Elements are not distinct.");
+    }
+  }
 
-	public boolean contains(Tone target) {
-		for (Tone tone : tones) {
-			if (tone.equals(target)) {
-				return true;
-			}
-		}
+  public boolean contains(Tone target) {
+    for (Tone tone : tones) {
+      if (tone.equals(target)) {
+        return true;
+      }
+    }
 
-		return false;
-	}
+    return false;
+  }
 
-	public boolean contains(ToneCollection target) {
-		for (Tone targetElement : target) {
-			boolean found = false;
+  public boolean contains(ToneCollection target) {
+    for (Tone targetElement : target) {
+      boolean found = false;
 
-			for (Tone tone : tones) {
-				if (tone.equals(targetElement)) {
-					found = true;
-				}
-			}
+      for (Tone tone : tones) {
+        if (tone.equals(targetElement)) {
+          found = true;
+        }
+      }
 
-			if (!found) {
-				return false;
-			}
-		}
+      if (!found) {
+        return false;
+      }
+    }
 
-		return true;
-	}
+    return true;
+  }
 
-	public ToneCollection intersection(ToneCollection target) {
-		ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder("Intersection of " + this.getText() + " and " + target.getText());
-		
-		for (Tone outerTone: tones){
-			for (Tone innerTone: target){
-				if (innerTone.equals(outerTone)){
-					toneCollectionBuilder.insert(innerTone);
-					break;
-				}
-			}
-		}
-		
-		return toneCollectionBuilder.toToneCollection();
-	}
+  public ToneCollection intersection(ToneCollection target) {
+    ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder(
+        "Intersection of " + this.getText() + " and " + target.getText());
 
-	
-	public ToneCollection union(ToneCollection target) {
-		ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder("Union of " + this.getText() + " and " + target.getText(), this);
-		
-		for(Tone tone: target){
-			toneCollectionBuilder.insert(tone);
-		}
-		
-		return toneCollectionBuilder.toToneCollection();
-	}
-	
+    for (Tone outerTone : tones) {
+      for (Tone innerTone : target) {
+        if (innerTone.equals(outerTone)) {
+          toneCollectionBuilder.insert(innerTone);
+          break;
+        }
+      }
+    }
 
-	public String getSpellingString() {
-		StringBuilder sb = new StringBuilder();
+    return toneCollectionBuilder.toToneCollection();
+  }
 
-		for (Tone tone : tones) {
-			sb.append(tone.getText() + ", ");
-		}
+  public ToneCollection union(ToneCollection target) {
+    ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder(
+        "Union of " + this.getText() + " and " + target.getText(), this);
 
-		sb.setLength(sb.length() - 2);
+    for (Tone tone : target) {
+      toneCollectionBuilder.insert(tone);
+    }
 
-		return sb.toString();
-	}
+    return toneCollectionBuilder.toToneCollection();
+  }
 
-	public int getSize() {
-		return tones.length;
-	}
+  public String getSpellingString() {
+    StringBuilder sb = new StringBuilder();
 
-	public Tone getTone(int position) {
-		if (position > (tones.length - 1)) {
-			return tones[position - tones.length];
-		}
-		else {
-			return tones[position];
-		}
-	}
+    for (Tone tone : tones) {
+      sb.append(tone.getText() + ", ");
+    }
 
-	public int getPosition(Tone target) throws IllegalArgumentException {
-		for (int i = 0; i < tones.length; i++) {
-			if (this.tones[i].equals(target)) {
-				return i;
-			}
-		}
+    sb.setLength(sb.length() - 2);
 
-		throw new IllegalArgumentException(
-				"Tone does not exist in this ToneCollection");
-	}
+    return sb.toString();
+  }
 
-	private boolean areTonesDistinct(Tone[] tones) {
-		TreeSet<Tone> treeSet = new TreeSet<Tone>(Arrays.asList(tones));
+  public int getSize() {
+    return tones.length;
+  }
 
-		if (tones.length != treeSet.size()) {
-			return false;
-		}
+  public Tone getTone(int position) {
+    if (position > (tones.length - 1)) {
+      return tones[position - tones.length];
+    }
+    else {
+      return tones[position];
+    }
+  }
 
-		return true;
-	}
+  public int getPosition(Tone target) throws IllegalArgumentException {
+    for (int i = 0; i < tones.length; i++) {
+      if (this.tones[i].equals(target)) {
+        return i;
+      }
+    }
 
-	public Iterator<Tone> iterator() {
-		return new ToneIterator();
-	}
+    throw new IllegalArgumentException("Tone does not exist in this ToneCollection");
+  }
 
-	class ToneIterator implements Iterator<Tone> {
-		private int index = 0;
+  private boolean areTonesDistinct(Tone[] tones) {
+    TreeSet<Tone> treeSet = new TreeSet<Tone>(Arrays.asList(tones));
 
-		public boolean hasNext() {
-			return index < getSize();
-		}
+    if (tones.length != treeSet.size()) {
+      return false;
+    }
 
-		public Tone next() {
-			return getTone(index++);
-		}
+    return true;
+  }
 
-		public void remove() {
-			throw new UnsupportedOperationException("not supported yet");
-		}
-	}
+  public Iterator<Tone> iterator() {
+    return new ToneIterator();
+  }
+
+  class ToneIterator implements Iterator<Tone> {
+    private int index = 0;
+
+    public boolean hasNext() {
+      return index < getSize();
+    }
+
+    public Tone next() {
+      return getTone(index++);
+    }
+
+    public void remove() {
+      throw new UnsupportedOperationException("not supported yet");
+    }
+  }
 
 }

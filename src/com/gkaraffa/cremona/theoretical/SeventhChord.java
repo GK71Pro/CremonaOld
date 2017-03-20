@@ -2,12 +2,14 @@ package com.gkaraffa.cremona.theoretical;
 
 import java.util.HashSet;
 
-public class Triad extends Chord {
-  public Triad(String name, Tone[] tones, ChordQuality chordQuality,
+public class SeventhChord extends Chord {
+
+  public SeventhChord(String name, Tone[] tones, ChordQuality chordQuality,
       HashSet<IntervalNumber> intervalNumberSet) {
     super(name, tones, chordQuality, intervalNumberSet);
   }
 
+  @Override
   public Tone getToneByIntervalNumber(IntervalNumber intervalNumber) {
     if (intervalNumber == IntervalNumber.FIRST) {
       return getTone(0);
@@ -20,6 +22,8 @@ public class Triad extends Chord {
             return getTone(1);
           case FIFTH:
             return getTone(2);
+          case SEVENTH:
+            return getTone(3);
           default:
             return null;
         }
@@ -27,6 +31,8 @@ public class Triad extends Chord {
       else {
         return null;
       }
+
     }
+
   }
 }
