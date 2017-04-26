@@ -17,6 +17,7 @@ public class DiatonicScale extends Scale implements Harmonizable {
     return location;
   }
 
+  @Override
   public Tone getToneAtRelativeInterval(IntervalNumber rootInterval,
       IntervalNumber offsetInterval) {
     return getTone(calculateLocation(rootInterval.getPosition(), offsetInterval.getPosition()));
