@@ -3,6 +3,7 @@ package com.gkaraffa.cremona.workbench;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import com.gkaraffa.cremona.instrument.Guitar;
 import com.gkaraffa.cremona.theoretical.*;
 
 public class Main {
@@ -12,18 +13,17 @@ public class Main {
 
   public static void main(String[] args) {
     try {
-      ChordFactory cF = new TriadFactory();
-      Chord chord = cF.createChordFromIntervalPattern(ChordIntervalPattern.majorPattern, Tone.C);
-      System.out.println(chord);
-      System.out.println(chord.getSpellingString());
+      ScaleFactory scaleFactory = new DiatonicScaleFactory();
+      Scale ionianScale = scaleFactory.createScale(ScalarIntervalPattern.ionianPattern, Tone.C);
+      Scale alteredScale = scaleFactory.createScale(ScalarIntervalPattern.melodicMinorPattern, Tone.GSHARP_AFLAT);
 
-      ScaleFactory sF = new DiatonicScaleFactory();
-      chord = cF.createChordFromHarmonizable(
-          (Harmonizable) sF.createScale(ScalarIntervalPattern.ionianPattern, Tone.C),
-          IntervalNumber.FIRST);
-      System.out.println(chord);
-      System.out.println(chord.getSpellingString());
-      System.out.println(":" + (1 / 0));
+      System.out.println(ionianScale.getSpellingString());
+      System.out.println(alteredScale.getSpellingString());
+      
+      Guitar guitar = new Guitar();
+      System.out.println(guitar.displayToneSeries(ionianScale));
+      System.out.println(guitar.displayToneSeries(alteredScale));
+
     }
     catch (Exception e) {
       StringWriter sW = new StringWriter();
@@ -34,8 +34,19 @@ public class Main {
 }
 
 /*
- * try { Tone[] tones = new Tone[4]; tones[0] = Tone.A; for (int i = 1; i <= 3;
- * i++) { tones[i] = TonalSpectrum.traverseInterval(tones[i - 1],
+ * try { ChordFactory cF = new TriadFactory(); Chord chord =
+ * cF.createChordFromIntervalPattern(ChordIntervalPattern.majorPattern, Tone.C);
+ * System.out.println(chord); System.out.println(chord.getSpellingString());
+ * 
+ * ScaleFactory sF = new DiatonicScaleFactory(); chord =
+ * cF.createChordFromHarmonizable( (Harmonizable)
+ * sF.createScale(ScalarIntervalPattern.ionianPattern, Tone.C),
+ * IntervalNumber.FIRST); System.out.println(chord);
+ * System.out.println(chord.getSpellingString()); System.out.println(":" + (1 /
+ * 0)); } catch (Exception e) { StringWriter sW = new StringWriter();
+ * e.printStackTrace(new PrintWriter(sW)); System.out.println(sW); } try {
+ * Tone[] tones = new Tone[4]; tones[0] = Tone.A; for (int i = 1; i <= 3; i++) {
+ * tones[i] = TonalSpectrum.traverseInterval(tones[i - 1],
  * Interval.PERFECT_FIFTH); }
  * 
  * for (Tone tone : tones) { System.out.println(tone); }

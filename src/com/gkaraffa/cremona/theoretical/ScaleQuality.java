@@ -5,7 +5,8 @@ public enum ScaleQuality {
   MINOR("minor", "m"),
   PERFECT("perfect", "P"),
   MAJOR("major", "M"),
-  AUGMENTED("augmented", "A");
+  AUGMENTED("augmented", "A"),
+  UNDEFINED("undefined", "U");
 
   private final String text;
   private final String abbrev;

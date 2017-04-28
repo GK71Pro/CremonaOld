@@ -3,7 +3,8 @@ package com.gkaraffa.cremona.theoretical;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ToneCollectionBuilder extends TheoreticalObject implements Iterable<Tone> {
+//public class ToneCollectionBuilder extends TheoreticalObject implements Iterable<Tone> 
+public class ToneCollectionBuilder extends TheoreticalObject {
   private final ArrayList<Tone> toneList;
 
   public ToneCollectionBuilder(String text) {
@@ -58,6 +59,7 @@ public class ToneCollectionBuilder extends TheoreticalObject implements Iterable
     return new ToneCollection(this.getText(), toneList.toArray(new Tone[toneList.size()]));
   }
 
+  /*
   public Iterator<Tone> iterator() {
     return new ToneIterator();
   }
@@ -77,5 +79,5 @@ public class ToneCollectionBuilder extends TheoreticalObject implements Iterable
       throw new UnsupportedOperationException("not supported yet");
     }
   }
-
+*/
 }
