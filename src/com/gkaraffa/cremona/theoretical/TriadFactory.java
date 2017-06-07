@@ -78,19 +78,6 @@ public class TriadFactory extends ChordFactory {
           }
         }
       }
-      else {
-        if (intervalArray[0] == Interval.PERFECT_FOURTH) {
-          intervalNumber.add(IntervalNumber.FOURTH);
-
-          if (intervalArray[1] == Interval.PERFECT_FIFTH) {
-            intervalNumber.add(IntervalNumber.FIFTH);
-            harmonicProfile.chordQuality = ChordQuality.SUSPENDED_FOURTH;
-            harmonicProfile.intervalNumberSet = intervalNumber;
-
-            return harmonicProfile;
-          }
-        }
-      }
     }
 
     throw new IllegalArgumentException("Not valid triad intervals.");
