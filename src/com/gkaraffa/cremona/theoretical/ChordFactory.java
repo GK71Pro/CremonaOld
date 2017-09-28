@@ -31,15 +31,15 @@ public abstract class ChordFactory {
 
     return tones;
   }
-
+  
   protected Tone[] harmonizableScaleAndIntervalNumberToToneArray(Harmonizable harmonizableScale,
-      IntervalNumber sourceInterval, int limit) {
+      IntervalNumber sourceInterval, int harmonicBase, int limit) {
     Tone[] toneArray = new Tone[limit];
 
     System.out.println(harmonizableScale);
-    for (int index = 0; index < limit; index++) {
+    for (int index = 0, offset = 0; index < limit; index++, offset+=harmonicBase) {
       toneArray[index] = harmonizableScale.getToneAtRelativeInterval(sourceInterval,
-          IntervalNumber.values()[index * 2]);
+          IntervalNumber.values()[offset]);
     }
 
     return toneArray;

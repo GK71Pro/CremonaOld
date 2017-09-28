@@ -23,7 +23,7 @@ public class TriadFactory extends ChordFactory {
   public Chord createChordFromHarmonizable(Harmonizable harmonizableScale,
       IntervalNumber intervalNumber) throws IllegalArgumentException {
 
-    Tone[] tones = harmonizableScaleAndIntervalNumberToToneArray(harmonizableScale, intervalNumber,
+    Tone[] tones = harmonizableScaleAndIntervalNumberToToneArray(harmonizableScale, intervalNumber, 2, 
         3);
     HarmonicProfile harmonicProfile = evaluateProfile(tones);
 

@@ -2,9 +2,9 @@ package com.gkaraffa.cremona.theoretical;
 
 import java.util.HashSet;
 
-public class SeventhChord extends Chord {
+public class Tetrad extends Chord {
 
-  public SeventhChord(String name, Tone[] tones, ChordQuality chordQuality,
+  public Tetrad(String name, Tone[] tones, ChordQuality chordQuality,
       HashSet<IntervalNumber> intervalNumberSet) {
     super(name, tones, chordQuality, intervalNumberSet);
   }

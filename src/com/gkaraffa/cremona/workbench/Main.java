@@ -10,7 +10,7 @@ public class Main {
   public static void main(String[] args) {
     try {
       ScaleFactory scaleFactory = new DiatonicScaleFactory();
-      Scale scale = scaleFactory.createScale(ScalarIntervalPattern.melodicMinorPattern, Tone.GSHARP_AFLAT);
+      Scale scale = scaleFactory.createScale(ScalarIntervalPattern.ionianPattern, Tone.C);
       
       for(int number = 0; number < scale.getSize(); number++){
         Interval interval = Interval.halfStepsAndIntervalNumberToInterval(TonalSpectrum.measureDistance(scale.getTone(0), scale.getTone(number)),
