@@ -1,26 +1,42 @@
 package com.gkaraffa.cremona.theoretical;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 
-public abstract class Chord extends ToneCollection {
+public  class Chord extends ToneCollection {
+  private HarmonicPreference harmonicPreference;
   private ChordQuality chordQuality;
-  private HashSet<IntervalNumber> intervalNumberSet;
+  private LinkedHashSet<IntervalNumber> intervalNumberSet;
 
   public Chord(String name, Tone[] tones, ChordQuality chordQuality,
-      HashSet<IntervalNumber> intervalNumberSet) {
+      LinkedHashSet<IntervalNumber> intervalNumberSet) {
     super(name, tones);
     this.chordQuality = chordQuality;
     this.intervalNumberSet = intervalNumberSet;
   }
 
+  
+  public HarmonicPreference getHarmonicPreference() {
+    return harmonicPreference;
+  }
+
+
   public final ChordQuality chordQuality() {
     return chordQuality;
   }
 
-  public final HashSet<IntervalNumber> getIntervalNumberSet() {
+  public final LinkedHashSet<IntervalNumber> getIntervalNumberSet() {
     return intervalNumberSet;
   }
 
-  public abstract Tone getToneByIntervalNumber(IntervalNumber intervalNumber);
+  /*
+  public final Tone getToneByIntervalNumber(IntervalNumber intervalNumber) throws CremonaException{
+    if (intervalNumberSet.contains(intervalNumber)) {
+      
+    }
+    else {
+      throw new CremonaException ("IntervalNumber does not exist in this Chord.");
+    }
+  }
+  */
 
 }
