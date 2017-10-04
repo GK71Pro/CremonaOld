@@ -2,7 +2,7 @@ package com.gkaraffa.cremona.theoretical;
 
 import java.util.LinkedHashSet;
 
-public  class Chord extends ToneCollection {
+public class Chord extends ToneCollection {
   private HarmonicPreference harmonicPreference;
   private ChordQuality chordQuality;
   private LinkedHashSet<IntervalNumber> intervalNumberSet;
@@ -14,7 +14,7 @@ public  class Chord extends ToneCollection {
     this.intervalNumberSet = intervalNumberSet;
   }
 
-  
+
   public HarmonicPreference getHarmonicPreference() {
     return harmonicPreference;
   }

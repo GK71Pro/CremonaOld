@@ -2,8 +2,7 @@ package com.gkaraffa.cremona.theoretical;
 
 public class DiatonicScaleFactory extends ScaleFactory {
 
-  public DiatonicScaleFactory() {
-  }
+  public DiatonicScaleFactory() {}
 
   @Override
   public Scale createScale(ScalarIntervalPattern scalarIntervalPattern, Tone key)

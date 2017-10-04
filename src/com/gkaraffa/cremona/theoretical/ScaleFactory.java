@@ -2,8 +2,7 @@ package com.gkaraffa.cremona.theoretical;
 
 public abstract class ScaleFactory {
 
-  public ScaleFactory() {
-  }
+  public ScaleFactory() {}
 
   abstract public Scale createScale(ScalarIntervalPattern scalarIntervalPattern, Tone key)
       throws IllegalArgumentException;

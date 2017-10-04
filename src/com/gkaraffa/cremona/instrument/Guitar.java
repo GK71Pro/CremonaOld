@@ -28,8 +28,7 @@ public class Guitar {
       stringTones.add(tone);
       tone = TonalSpectrum.traverseDistance(tone, 1);
       index++;
-    }
-    while (index <= numberFrets);
+    } while (index <= numberFrets);
 
     return stringTones;
   }

@@ -46,8 +46,8 @@ public class ToneCollection extends TheoreticalObject implements Iterable<Tone> 
   }
 
   public ToneCollection intersection(ToneCollection target) {
-    ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder(
-        "Intersection of " + this.getText() + " and " + target.getText());
+    ToneCollectionBuilder toneCollectionBuilder =
+        new ToneCollectionBuilder("Intersection of " + this.getText() + " and " + target.getText());
 
     for (Tone outerTone : tones) {
       for (Tone innerTone : target) {
@@ -62,8 +62,8 @@ public class ToneCollection extends TheoreticalObject implements Iterable<Tone> 
   }
 
   public ToneCollection union(ToneCollection target) {
-    ToneCollectionBuilder toneCollectionBuilder = new ToneCollectionBuilder(
-        "Union of " + this.getText() + " and " + target.getText(), this);
+    ToneCollectionBuilder toneCollectionBuilder =
+        new ToneCollectionBuilder("Union of " + this.getText() + " and " + target.getText(), this);
 
     for (Tone tone : target) {
       toneCollectionBuilder.insert(tone);

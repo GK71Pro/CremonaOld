@@ -17,5 +17,5 @@ public abstract class Scale extends ToneCollection {
   public Tone getKey() {
     return this.key;
   }
-  
+
 }

@@ -2,8 +2,7 @@ package com.gkaraffa.cremona.theoretical;
 
 public class PentatonicScaleFactory extends ScaleFactory {
 
-  public PentatonicScaleFactory() {
-  }
+  public PentatonicScaleFactory() {}
 
   @Override
   public Scale createScale(ScalarIntervalPattern scalarIntervalPattern, Tone key)
@@ -21,8 +20,8 @@ public class PentatonicScaleFactory extends ScaleFactory {
 
   @Override
   protected ScaleQuality evaluateScaleQuality(ScalarIntervalPattern scalarIntervalPattern) {
-    Interval thirdInterval = scalarIntervalPattern
-        .getIntervalByIntervalNumber(IntervalNumber.THIRD);
+    Interval thirdInterval =
+        scalarIntervalPattern.getIntervalByIntervalNumber(IntervalNumber.THIRD);
     ScaleQuality scaleQuality = null;
 
     switch (thirdInterval) {

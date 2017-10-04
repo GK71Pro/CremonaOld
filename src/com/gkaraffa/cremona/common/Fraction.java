@@ -24,8 +24,7 @@ public class Fraction extends Object implements Comparable<Object> {
   }
 
   // constructors
-  public Fraction() {
-  }
+  public Fraction() {}
 
   public Fraction(int paramNumerator, int paramDenominator) {
     // check for divide by zero
