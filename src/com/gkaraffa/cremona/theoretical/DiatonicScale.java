@@ -18,15 +18,15 @@ public class DiatonicScale extends Scale implements Harmonizable, Modal {
   }
 
   @Override
-  public Tone getToneAtRelativeInterval(IntervalNumber rootInterval,
+  public Tone getToneAtRelativeIntervalNumber(IntervalNumber rootInterval,
       IntervalNumber offsetInterval) {
     return getTone(calculateLocation(rootInterval.getPosition(), offsetInterval.getPosition()));
   }
 
   @Override
   public Modal getMode(int modalOffset) {
-    // TODO Auto-generated method stub
-    return null;
+    //unimplemented
+    throw new java.lang.UnsupportedOperationException();
   }
 
 }

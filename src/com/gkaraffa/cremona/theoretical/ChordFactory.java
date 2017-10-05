@@ -35,7 +35,7 @@ public class ChordFactory {
     Tone[] toneArray = new Tone[limit];
 
     for (int index = 0, offset = 0; index < limit; index++, offset += preference.getOffset()) {
-      toneArray[index] = harmonizableScale.getToneAtRelativeInterval(sourceInterval,
+      toneArray[index] = harmonizableScale.getToneAtRelativeIntervalNumber(sourceInterval,
           IntervalNumber.values()[offset]);
     }
 
