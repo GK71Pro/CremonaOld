@@ -6,6 +6,7 @@ public class ScalarIntervalPattern extends IntervalPattern {
       throws IllegalArgumentException {
     super(name, inPatternString);
   }
+  
 
   public static ScalarIntervalPattern ionianPattern =
       new ScalarIntervalPattern("Ionian", "M2,M3,P4,P5,M6,M7,P8");
@@ -29,5 +30,11 @@ public class ScalarIntervalPattern extends IntervalPattern {
       new ScalarIntervalPattern("Pentatonic Major", "M2,M3,P5,M6,P8");
   public static ScalarIntervalPattern pentatonicMinorPattern =
       new ScalarIntervalPattern("Pentatonic Minor", "m3,P4,P5,m7,P8");
+  public static ScalarIntervalPattern firstDiminishedPattern = 
+      new ScalarIntervalPattern("First Diminished", "M2,m3,P4,d5,m6,d7,M7,P8");
+  public static ScalarIntervalPattern secondDiminishedPattern = 
+      new ScalarIntervalPattern("Second Diminished", "m2,m3,d4,d5,d6,d7,m7,P8");
+  public static ScalarIntervalPattern wholeTonePattern = 
+      new ScalarIntervalPattern("Whole Tone", "M2,M3,A4,A5,A6,P8");
 
 }
