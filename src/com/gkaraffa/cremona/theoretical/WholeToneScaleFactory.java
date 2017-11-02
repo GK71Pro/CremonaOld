@@ -13,7 +13,7 @@ public class WholeToneScaleFactory extends SymmetricScaleFactory {
       throw new IllegalArgumentException("Incorrect Pattern for this Factory.");
     }
 
-    ScaleQuality scaleQuality = ScaleQuality.WHOLE_TONE;
+    ScaleQuality scaleQuality = evaluateScaleQuality(scalarIntervalPattern);
     Tone tones[] = this.createToneArray(scalarIntervalPattern, key);
 
     return new WholeToneScale(key.getText() + " " + scalarIntervalPattern.getText(), tones,
@@ -22,8 +22,7 @@ public class WholeToneScaleFactory extends SymmetricScaleFactory {
 
   @Override
   protected ScaleQuality evaluateScaleQuality(ScalarIntervalPattern scaleIntervalPattern) {
-    // TODO Auto-generated method stub
-    return null;
+    return ScaleQuality.WHOLE_TONE;
   }
 
   @Override

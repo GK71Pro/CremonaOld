@@ -1,26 +1,23 @@
 package com.gkaraffa.cremona.workbench;
 
-import java.util.ArrayList;
-
 import com.gkaraffa.cremona.instrument.*;
 import com.gkaraffa.cremona.theoretical.*;
 
 public class Main {
-  
 
   public Main() {}
 
   public static void main(String[] args) {
 
     try {
-      
+
       InstrumentViewFactory iVF = new GuitarViewFactory();
       InstrumentView iV = iVF.createInstrumentView();
       ScaleFactory scaleFactory = new WholeToneScaleFactory();
       Scale scale = scaleFactory.createScale(ScalarIntervalPattern.wholeTonePattern, Tone.C);
 
       System.out.println(iV.getCSVView(scale));
-       
+
 
       /*
       ArrayList<Tone> toneList = new ArrayList<Tone>();
