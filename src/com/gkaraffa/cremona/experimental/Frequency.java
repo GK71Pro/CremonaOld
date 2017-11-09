@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.experimenal;
+package com.gkaraffa.cremona.experimental;
 
 public class Frequency {
   private double cycles = 0.0;

@@ -1,11 +1,13 @@
 package com.gkaraffa.cremona.common;
 
+import com.gkaraffa.cremona.experimental.Frequency;
 import com.gkaraffa.cremona.theoretical.TheoreticalObject;
 import com.gkaraffa.cremona.theoretical.Tone;
 
 public class Pitch extends TheoreticalObject {
   private Tone tone;
   private int range;
+  private Frequency frequency;
 
   public Pitch(Pitch p) {
     super(p.getText());
@@ -20,10 +22,14 @@ public class Pitch extends TheoreticalObject {
   }
 
   public Tone getTone() {
-    return tone;
+    return this.tone;
   }
 
   public int getRange() {
-    return range;
+    return this.range;
+  }
+  
+  public Frequency getFrequency() {
+    return this.frequency;
   }
 }
