@@ -2,15 +2,16 @@ package com.gkaraffa.cremona.instrument;
 
 import java.util.ArrayList;
 
-import com.gkaraffa.cremona.theoretical.Tone;
+import com.gkaraffa.cremona.common.Pitch;
+import com.gkaraffa.cremona.common.PitchCollection;
 import com.gkaraffa.cremona.theoretical.ToneCollection;
 
 public class GuitarView extends InstrumentView {
-  private ArrayList<ArrayList<Tone>> strings = new ArrayList<ArrayList<Tone>>();
+  private ArrayList<ArrayList<Pitch>> strings = new ArrayList<ArrayList<Pitch>>();
   private int numberFrets;
 
 
-  public GuitarView(ArrayList<ArrayList<Tone>> strings, int numberFrets) {
+  public GuitarView(ArrayList<ArrayList<Pitch>> strings, int numberFrets) {
     super();
     this.strings = strings;
     this.numberFrets = numberFrets;
@@ -25,9 +26,9 @@ public class GuitarView extends InstrumentView {
       sb.append(index);
       sb.append("\t");
       for (int subindex = 0; subindex < numStrings; subindex++) {
-        ArrayList<Tone> currentString = (ArrayList<Tone>) strings.get(subindex);
-        Tone currentTone = (Tone) currentString.get(index);
-        sb.append(currentTone.toString());
+        ArrayList<Pitch> currentString = (ArrayList<Pitch>) strings.get(subindex);
+        Pitch currentPitch = (Pitch) currentString.get(index);
+        sb.append(currentPitch.toString());
         sb.append("\t");
       }
       sb.append("\n");
@@ -45,10 +46,10 @@ public class GuitarView extends InstrumentView {
       sb.append(index);
       sb.append("\t");
       for (int subindex = 0; subindex < numStrings; subindex++) {
-        ArrayList<Tone> currentString = (ArrayList<Tone>) strings.get(subindex);
-        Tone currentTone = (Tone) currentString.get(index);
-        if (toneCollection.contains(currentTone)) {
-          sb.append(currentTone.toString());
+        ArrayList<Pitch> currentString = (ArrayList<Pitch>) strings.get(subindex);
+        Pitch currentPitch = (Pitch) currentString.get(index);
+        if (toneCollection.contains(currentPitch.getTone())) {
+          sb.append(currentPitch.toString());
         }
         else {
           sb.append(" ");
@@ -60,9 +61,11 @@ public class GuitarView extends InstrumentView {
 
     return (sb.toString());
   }
-
-  public Tone getTone(int numString, int numFret) {
-    return ((Tone) strings.get(numString).get(numFret));
+  
+  @Override
+  public String getTextView(PitchCollection pitchCollection) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
   @Override
@@ -72,8 +75,8 @@ public class GuitarView extends InstrumentView {
 
     for (int index = 0; index <= numberFrets; index++) {
       for (int subindex = 0; subindex < numStrings; subindex++) {
-        Tone currentNote = getTone(subindex, index);
-        sb.append(currentNote.toString());
+        Pitch currentPitch = getPitch(subindex, index);
+        sb.append(currentPitch.toString());
         sb.append(",");
       }
       sb.append("\n");
@@ -88,9 +91,9 @@ public class GuitarView extends InstrumentView {
 
     for (int index = 0; index <= numberFrets; index++) {
       for (int subindex = 0; subindex < numStrings; subindex++) {
-        Tone currentNote = getTone(subindex, index);
-        if (toneCollection.contains(currentNote)) {
-          sb.append(currentNote.toString());
+        Pitch currentPitch = getPitch(subindex, index);
+        if (toneCollection.contains(currentPitch.getTone())) {
+          sb.append(currentPitch.toString());
         }
         else {
           sb.append(" ");
@@ -101,6 +104,22 @@ public class GuitarView extends InstrumentView {
     }
     return (sb.toString());
   }
+
+  @Override
+  public String getCSVView(PitchCollection pitchCollection) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+  
+  public Pitch getPitch(int numString, int numFret) {
+    return ((Pitch) strings.get(numString).get(numFret));
+  }  
+  
+  /*
+  public Tone getTone(int numString, int numFret) {
+    return ((Tone) strings.get(numString).get(numFret));
+  }
+  */
   
   /*
   public ArrayList<Tone> getGuitarList(ToneCollection collection) {

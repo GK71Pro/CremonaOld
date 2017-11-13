@@ -2,11 +2,11 @@ package com.gkaraffa.cremona.instrument;
 
 import java.util.ArrayList;
 
-import com.gkaraffa.cremona.theoretical.Tone;
+import com.gkaraffa.cremona.common.Pitch;
 
 public class GuitarViewParameters extends InstrumentViewParameters {
   private int numberOfFrets;
-  private ArrayList<Tone> openStringTones = new ArrayList<Tone>();
+  private ArrayList<Pitch> openStringPitches = new ArrayList<Pitch>();
 
   public GuitarViewParameters() {
     super();
@@ -20,14 +20,11 @@ public class GuitarViewParameters extends InstrumentViewParameters {
     this.numberOfFrets = numberOfFrets;
   }
 
-  public ArrayList<Tone> getOpenStringTones() {
-    return openStringTones;
+  public ArrayList<Pitch> getOpenStringPitches() {
+    return openStringPitches;
   }
 
-  public void setOpenStringTones(ArrayList<Tone> openStringTones) {
-    this.openStringTones = openStringTones;
+  public void setOpenStringPitches(ArrayList<Pitch> openStringPitches) {
+    this.openStringPitches = openStringPitches;
   }
-
-
-
 }

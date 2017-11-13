@@ -16,8 +16,8 @@ public class Main {
       ScaleFactory scaleFactory = new WholeToneScaleFactory();
       Scale scale = scaleFactory.createScale(ScalarIntervalPattern.wholeTonePattern, Tone.C);
 
-      System.out.println(iV.getCSVView(scale));
-
+      //System.out.println(iV.getCSVView(scale));
+      System.out.println(iV.getTextView(scale));
 
       /*
       ArrayList<Tone> toneList = new ArrayList<Tone>();
