@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.instrument;
+package com.gkaraffa.cremona.instrument.view;
 
 import java.util.ArrayList;
 
@@ -17,25 +17,48 @@ public class GuitarView extends InstrumentView {
     this.numberFrets = numberFrets;
   }
 
+  
   @Override
   public String getTextView() {
-    StringBuilder sb = new StringBuilder();
+    StringBuilder sB = new StringBuilder();
     int numStrings = strings.size();
 
+    sB.append("---------------------------------------------------------------\n");
+
     for (int index = 0; index <= numberFrets; index++) {
-      sb.append(index);
-      sb.append("\t");
+      StringBuilder fretNumber = new StringBuilder(Integer.toString(index));
+
+      if (fretNumber.length() == 1) {
+        fretNumber.insert(0, " ");
+      }
+
+      sB.append(fretNumber.toString());
+      sB.append("|");
+
       for (int subindex = 0; subindex < numStrings; subindex++) {
         ArrayList<Pitch> currentString = (ArrayList<Pitch>) strings.get(subindex);
         Pitch currentPitch = (Pitch) currentString.get(index);
-        sb.append(currentPitch.toString());
-        sb.append("\t");
+        String subjectString = currentPitch.getText();
+
+        if (subjectString.length() == 3) {
+          sB.append("   ").append(subjectString).append("   ");
+        }
+        else {
+          sB.append(" ").append(subjectString).append(" ");
+        }
+
+        sB.append("|");
       }
-      sb.append("\n");
+      
+      sB.append("\n");
+      sB.append("---------------------------------------------------------------\n");
     }
 
-    return (sb.toString());
+    return (sB.toString());
   }
+  
+
+  
 
   @Override
   public String getTextView(ToneCollection toneCollection) {
@@ -61,7 +84,7 @@ public class GuitarView extends InstrumentView {
 
     return (sb.toString());
   }
-  
+
   @Override
   public String getTextView(PitchCollection pitchCollection) {
     // TODO Auto-generated method stub
@@ -110,17 +133,17 @@ public class GuitarView extends InstrumentView {
     // TODO Auto-generated method stub
     return null;
   }
-  
+
   public Pitch getPitch(int numString, int numFret) {
     return ((Pitch) strings.get(numString).get(numFret));
-  }  
-  
+  }
+
   /*
   public Tone getTone(int numString, int numFret) {
     return ((Tone) strings.get(numString).get(numFret));
   }
   */
-  
+
   /*
   public ArrayList<Tone> getGuitarList(ToneCollection collection) {
     ArrayList<Tone> al = new ArrayList<Tone>();

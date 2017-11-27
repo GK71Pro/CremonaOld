@@ -1,4 +1,4 @@
-package com.gkaraffa.cremona.instrument;
+package com.gkaraffa.cremona.instrument.model;
 
 import java.util.ArrayList;
 
