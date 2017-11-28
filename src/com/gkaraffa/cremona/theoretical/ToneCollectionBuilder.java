@@ -40,6 +40,8 @@ public class ToneCollectionBuilder extends TheoreticalObject {
   }
 
   public boolean contains(Tone target) {
+    return toneList.contains(target);
+    /*
     for (Tone tone : toneList) {
       if (tone == target) {
         return true;
@@ -47,6 +49,7 @@ public class ToneCollectionBuilder extends TheoreticalObject {
     }
 
     return false;
+    */
   }
 
   public ToneCollection toToneCollection() {

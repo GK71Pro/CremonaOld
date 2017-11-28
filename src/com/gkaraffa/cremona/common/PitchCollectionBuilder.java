@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class PitchCollectionBuilder extends CremonaObject {
   private final ArrayList<Pitch> pitchList;
+  
+  public PitchCollectionBuilder() {
+    super("");
+    pitchList = new ArrayList<Pitch>();
+  }
 
   public PitchCollectionBuilder(String text) {
     super(text);

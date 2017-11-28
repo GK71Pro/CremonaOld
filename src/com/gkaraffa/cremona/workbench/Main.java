@@ -1,71 +1,50 @@
 package com.gkaraffa.cremona.workbench;
 
+import com.gkaraffa.cremona.common.Pitch;
+import com.gkaraffa.cremona.common.PitchCollection;
+import com.gkaraffa.cremona.common.PitchCollectionBuilder;
+import com.gkaraffa.cremona.instrument.model.GuitarModel;
 import com.gkaraffa.cremona.instrument.model.GuitarModelFactory;
-import com.gkaraffa.cremona.instrument.model.InstrumentModel;
 import com.gkaraffa.cremona.instrument.model.InstrumentModelFactory;
-import com.gkaraffa.cremona.instrument.view.GuitarViewFactory;
-import com.gkaraffa.cremona.instrument.view.InstrumentView;
-import com.gkaraffa.cremona.instrument.view.InstrumentViewFactory;
-import com.gkaraffa.cremona.theoretical.*;
+import com.gkaraffa.cremona.theoretical.DiatonicScaleFactory;
+import com.gkaraffa.cremona.theoretical.ScalarIntervalPattern;
+import com.gkaraffa.cremona.theoretical.Scale;
+import com.gkaraffa.cremona.theoretical.ScaleFactory;
+import com.gkaraffa.cremona.theoretical.Tone;
 
 public class Main {
 
   public Main() {}
 
+  @SuppressWarnings("unused")
   public static void main(String[] args) {
+    System.out.println("Process starts.");
 
     try {
+      ScaleFactory sF = new DiatonicScaleFactory();
+      Scale scale = sF.createScale(ScalarIntervalPattern.ionianPattern, Tone.C);
+      
+      PitchCollectionBuilder pCB = new PitchCollectionBuilder();
+      pCB.insert(new Pitch(Tone.ASHARP_BFLAT, 3));
+      pCB.insert(new Pitch(Tone.CSHARP_DFLAT, 3));
+      PitchCollection pC = pCB.topitchCollection();
       
       InstrumentModelFactory iMF = new GuitarModelFactory();
-      InstrumentModel iM = iMF.createInstrumentModel();
-
-      InstrumentViewFactory iVF = new GuitarViewFactory();
-      InstrumentView iV = iVF.createInstrumentView();
-      ScaleFactory scaleFactory = new WholeToneScaleFactory();
-      Scale scale = scaleFactory.createScale(ScalarIntervalPattern.wholeTonePattern, Tone.C);
-
-      //System.out.println(iV.getCSVView(scale));
-      System.out.println(iV.getTextView());
-
-      /*
-      ArrayList<Tone> toneList = new ArrayList<Tone>();
-      Tone startTone = Tone.C;
-      Tone nextTone = startTone;
-      boolean toggle = false;
-      int count = 1;
+      GuitarModel gM = (GuitarModel) iMF.createInstrumentModel();
       
-      do {
-        toneList.add(nextTone);
-        
-        if (toggle) {
-          nextTone = TonalSpectrum.traverseDistance(nextTone, Interval.MINOR_SECOND.getHalfSteps());
-          toggle = false;
-        }
-        else {
-          nextTone = TonalSpectrum.traverseDistance(nextTone, Interval.MAJOR_SECOND.getHalfSteps());
-          toggle = true;
-        }
-        
-        count++;
-      } while (!nextTone.equals(startTone));
+      //Pitch[] pitches = gM.getFilteredRow(1, scale);
+      Pitch[] pitches = gM.getFilteredColumn(0, pC);
       
-      for (int index = 0; index <= 7; index++) {
-        System.out.print(toneList.get(index));
-        int halfSteps = TonalSpectrum.measureDistance(toneList.get(0), toneList.get(index));
-        System.out.println("\t" + halfSteps);
-        ArrayList<Interval> alIntervals = Interval.halfStepsToIntervalList(halfSteps);
-          for(Interval interval: alIntervals) {
-            System.out.println("\t" + interval);
-          }
+      for(Pitch pitch: pitches) {
+        System.out.println(pitch);
       }
-      */
-
+      
     }
     catch (Exception e) {
       e.printStackTrace();
     }
-
+    
+    System.out.println("Process completes.");
   }
-
 }
 
