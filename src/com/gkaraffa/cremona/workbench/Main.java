@@ -32,12 +32,8 @@ public class Main {
       InstrumentModelFactory iMF = new GuitarModelFactory();
       GuitarModel gM = (GuitarModel) iMF.createInstrumentModel();
       
-      //Pitch[] pitches = gM.getFilteredRow(1, scale);
-      Pitch[] pitches = gM.getFilteredColumn(0, pC);
-      
-      for(Pitch pitch: pitches) {
-        System.out.println(pitch);
-      }
+      String fretBoard = FretboardCreator.createFretboard(gM);
+      System.out.println(fretBoard);
       
     }
     catch (Exception e) {
